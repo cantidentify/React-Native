@@ -11,6 +11,6 @@
 
  # Common Mistake
 
-ใน /android/build.gradle  ไม่ได้ 
+ใน /android/build.gradle  ไม่ได้ add
  maven { url("$rootDir/../node_modules/expo-camera/android/maven") }
  
