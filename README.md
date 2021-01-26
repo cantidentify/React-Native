@@ -11,10 +11,6 @@
 
  # Common Mistake
 
-ใน build.gradle ไม่ได้ add 
-
-maven {
-  // expo-camera bundles a custom com.google.android:cameraview
-  url "$rootDir/../node_modules/expo-camera/android/maven"
-}
+ใน /android/build.gradle  ไม่ได้ 
+ maven { url("$rootDir/../node_modules/expo-camera/android/maven") }
  
