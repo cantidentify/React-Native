@@ -17,7 +17,7 @@ let Stack = createStackNavigator()
 function HomeScreen() {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Home!</Text>
+      <Text>Home2!</Text>
     </View>
   );
 }

@@ -1,7 +1,6 @@
 # ignore these folders
 node_modules/
 android/
-<<<<<<< HEAD
 .expo/*
 android/app/build/
 
@@ -11,6 +10,3 @@ metro.config.js
 README.md
 yarn.lock
 .gitignore
-=======
-android/app/build/
->>>>>>> caa3d55a208dc73a58546c95db49a7350cf60f49
