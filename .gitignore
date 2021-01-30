@@ -1,12 +1,5 @@
 # ignore these folders
 node_modules/
-android/
-.expo/*
 android/app/build/
 
-/app.json
-/index.js
-/metro.config.js
-/README.md
-/yarn.lock
-/.gitignore
+
