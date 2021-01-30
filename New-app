@@ -59,7 +59,6 @@ const OtherMenuScreen = () =>(
   </OtherMenuStack.Navigator>
 )
 
-
 export default function App() {
   return (
     <NavigationContainer>
