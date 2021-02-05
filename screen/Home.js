@@ -1,7 +1,15 @@
 import React from 'react';
-import {View, Text, SafeAreaView, StyleSheet, Button} from 'react-native';
+import {
+  View,
+  Text,
+  SafeAreaView,
+  StyleSheet,
+  Image,
+  Button,
+  TouchableOpacity,
+} from 'react-native';
 
-const Home =({ navigation })=> {
+const Home = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
       <View>
@@ -20,40 +28,43 @@ const Home =({ navigation })=> {
             style={{textAlign: 'center', fontWeight: 'bold', color: 'white'}}>
             Gallerry
           </Text>
-
         </View>
 
         <View style={styles.box2}>
-          <View style={styles.icon1}>
-            <Text
-              style={{textAlign: 'center', fontWeight: 'bold', color: 'white'}}>
-              ข้อมูลวัด
-            </Text>
-            <Button
-            title="Click"
-            onPress ={() => navigation.push("Info")}
-            />
-          </View>
-          <View style={styles.icon1}>
-            <Text
-              style={{textAlign: 'center', fontWeight: 'bold', color: 'white'}}>
-              บุคลากร
-            </Text>
-          </View>
+          <TouchableOpacity
+            style={styles.shadowButton}
+            onPress={() => navigation.navigate('Location')}>
+            <View style={{alignItems: 'center'}}>
+              <Image
+                style={styles.icon}
+                source={require('../asset/icon/map.png')}
+              />
+              <Text style={styles.iconText}>สถานที่ต่างๆ</Text>
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.shadowButton}
+            onPress={() => navigation.navigate('Info')}>
+            <View style={{alignItems: 'center'}}>
+              <Image
+                style={styles.icon}
+                source={require('../asset/icon/temple.png')}
+              />
+              <Text style={styles.iconText}>ประวัติความเป็นมา</Text>
+            </View>
+          </TouchableOpacity>
         </View>
 
         <View style={styles.box3}>
-          <Text style={styles.topBox}>ประกาศ</Text>
+          <View style={styles.textBackground}>
+            <Text style={styles.topBoxText}>ประกาศ</Text>
+          </View>
         </View>
-
-        <View style={styles.box3}>
-          <Text style={styles.topBox}>กิจกรรม</Text>
-        </View>
-
       </View>
     </SafeAreaView>
   );
-}
+};
 
 export default Home;
 
@@ -74,7 +85,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 1,
-    height:50,
+    height: 50,
   },
   headerfont: {
     fontSize: 20,
@@ -82,7 +93,7 @@ const styles = StyleSheet.create({
     color: '#ff884b',
   },
   box1: {
-    marginTop: 30,
+    marginTop: 20,
     justifyContent: 'center',
     width: '100%',
     height: 170,
@@ -101,24 +112,30 @@ const styles = StyleSheet.create({
     height: 100,
     backgroundColor: '#e27802',
   },
-  icon1: {
+  textBackground: {
+    backgroundColor: 'white',
+  },
+  icon: {
     borderRadius: 10,
     justifyContent: 'center',
-    backgroundColor: '#e27802',
-    height: 100,
-    width: 100,
+    height: 70,
+    width: 70,
   },
-  topBox: {
-    backgroundColor: 'white',
+  topBoxText: {
     color: 'black',
     fontSize: 21,
     fontWeight: 'bold',
+    marginLeft: 10,
   },
-  buttom_navigator:{
+  iconText: {
+    textAlign: 'center',
+    marginTop: 15,
+  },
+  buttom_navigator: {
     backgroundColor: 'white',
-    marginTop:20,
-    
-    height:50,
+    marginTop: 20,
+
+    height: 50,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -127,7 +144,17 @@ const styles = StyleSheet.create({
     shadowOpacity: 1,
     shadowRadius: 3.84,
     elevation: 9,
-    
-    
-  }
+  },
+  shadowButton: {
+    shadowColor: 'rgba(0,0,0, .4)', // IOS
+    shadowOffset: {height: 1, width: 1}, // IOS
+    shadowOpacity: 1, // IOS
+    shadowRadius: 1, //IOS
+    backgroundColor: '#fff',
+    elevation: 2, // Android
+    height: 110,
+    width: 120,
+    borderRadius: 10,
+  },
+
 });

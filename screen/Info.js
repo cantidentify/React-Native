@@ -5,7 +5,7 @@ const Info =()=> {
   return (
     <SafeAreaView style={styles.container}>
       <View>
-        <View style={styles.header}>
+        {/* <View style={styles.header}>
           <View style={{}}>
             <Text style={{color: 'black'}}>Home</Text>
           </View>
@@ -13,7 +13,7 @@ const Info =()=> {
           <View style={{position: 'absolute', marginLeft: '20%'}}>
             <Text style={styles.headerfont}>วัดเทพลีลาพระอารามหลวง</Text>
           </View>
-        </View>
+        </View> */}
 
         <View style={styles.box3}>
           <Text style={styles.topBox}>วัดเทพลีลาพระอารามหลวง</Text>
