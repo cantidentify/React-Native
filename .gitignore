@@ -1,5 +1,5 @@
 # ignore these folders
 node_modules/
 android/app/build/
-
+New-app.js
 
