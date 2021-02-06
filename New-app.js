@@ -28,7 +28,7 @@ const OtherMenuStack = createStackNavigator();
 
 const BottonTab = () => (
   <Tab.Navigator initialRouteName="Home">
-    <Tab.Screen name="Homess" component={HomeStackScreen} options={{title:'หน้าหลัก'}} />
+    <Tab.Screen name="Home" component={HomeStackScreen} options={{title:'หน้าหลัก'}} />
     <Tab.Screen name="Location" component={LocationStackScreen} options={{title:'แผนที่'}} />
     <Tab.Screen name="Activity" component={ActivityStackScreen} options={{title:'ข่าวสาร'}} />
     <Tab.Screen name="Info" component={InfoStackScreen} options={{title:'ข้อมูลวัด'}} />
