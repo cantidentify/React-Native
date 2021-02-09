@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
+
 const Home = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
@@ -22,6 +23,8 @@ const Home = ({navigation}) => {
             <Text style={styles.headerfont}>วัดเทพลีลาพระอารามหลวง</Text>
           </View>
         </View> */}
+
+
 
         <View style={styles.box1}>
           <Text
@@ -45,7 +48,7 @@ const Home = ({navigation}) => {
 
           <TouchableOpacity
             style={styles.shadowButton}
-            onPress={() => navigation.navigate('Info')}>
+            onPress={() => navigation.push('Info')}>
             <View style={{alignItems: 'center'}}>
               <Image
                 style={styles.icon}
@@ -130,6 +133,8 @@ const styles = StyleSheet.create({
   iconText: {
     textAlign: 'center',
     marginTop: 15,
+    opacity:0.6,
+    fontWeight:'bold'
   },
   buttom_navigator: {
     backgroundColor: 'white',
@@ -151,9 +156,9 @@ const styles = StyleSheet.create({
     shadowOpacity: 1, // IOS
     shadowRadius: 1, //IOS
     backgroundColor: '#fff',
-    elevation: 2, // Android
+    elevation: 0.9, // Android
     height: 110,
-    width: 120,
+    width: 130,
     borderRadius: 10,
   },
 

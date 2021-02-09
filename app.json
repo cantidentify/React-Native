@@ -1,22 +1,4 @@
 {
-  "expo": {
-    "_internal": {
-      "isDebug": false,
-      "projectRoot": "D:\\Lab\\React-native HW\\React-Native",
-      "dynamicConfigPath": null,
-      "staticConfigPath": null,
-      "packageJsonPath": "D:\\Lab\\React-native HW\\React-Native\\package.json"
-    },
-    "name": "temple_project",
-    "slug": "temple_project",
-    "version": "0.0.1",
-    "sdkVersion": "40.0.0",
-    "platforms": [
-      "ios",
-      "android"
-    ],
-    "android": {
-      "package": "com.android"
-    }
-  }
+  "name": "temple_react",
+  "displayName": "temple_react"
 }
