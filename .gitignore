@@ -57,3 +57,8 @@ buck-out/
 
 # CocoaPods
 /ios/Pods/
+
+/__tests__/*
+/android/*
+/ios/*
+/node_modules/*
