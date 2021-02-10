@@ -19,6 +19,7 @@ import Location from "./screen/Location";
 import Activity from "./screen/Activity";
 import Info from "./screen/Info";
 import OtherMenu from "./screen/OtherMenu";
+import SlideShow from "./screen/SlideShow";
 
 
 const Tab = createBottomTabNavigator();
@@ -35,16 +36,17 @@ const BottonTab = () => (
   
   screenOptions={({ route }) => ({
     tabBarIcon: ({ focused, color }) => {
-      let iconName;
-
+      let source;
       if (route.name === 'Home') {
-        iconName = 'home';
-      } else if (route.name === 'Settings') {
-        iconName = focused ? 'ios-list-box' : 'ios-list';
+        source = focused? require('./asset/icon/house.png') : require('./asset/icon/house_grey.png');
+      } else if (route.name === 'Location') {
+        source = focused? require('./asset/icon/map.png') : require('./asset/icon/map_grey.png');
+      } else if (route.name === 'Activity') {
+        source = focused? require('./asset/icon/newspaper.png') : require('./asset/icon/newspaper_grey.png');
+      } else if (route.name === 'OtherMenu') {
+        source = focused? require('./asset/icon/menu.png') : require('./asset/icon/menu_grey.png');
       }
-
-      // You can return any component that you like here!
-      return <Icon name={iconName} size={23} color={color} />;
+      return <Image style={styles.icon} source={source}/>
     },
   })}
   tabBarOptions={{
@@ -56,23 +58,11 @@ const BottonTab = () => (
 
     <Tab.Screen name="Home" component={HomeStackScreen} options={{title:'หน้าหลัก'}}/>
 
-    <Tab.Screen name="Location" component={LocationStackScreen} options={{title:'แผนที่',
-  tabBarIcon:()=>(  
-    <Image style={styles.icon} source={require('./asset/icon/map.png')}/>
-  )
-  }}/>
+    <Tab.Screen name="Location" component={LocationStackScreen} options={{title:'แผนที่'}}/>
 
-    <Tab.Screen name="Activity" component={ActivityStackScreen} options={{title:'ข่าวสาร',
-  tabBarIcon:()=>(  
-    <Image style={styles.icon} source={require('./asset/icon/newspaper.png')}/>
-  )
-  }}/>
+    <Tab.Screen name="Activity" component={ActivityStackScreen} options={{title:'ข่าวสาร'}}/>
 
-    <Tab.Screen name="OtherMenu" component={OtherMenuScreen} options={{title:'เมนูอื่นๆ',
-  tabBarIcon:()=>( 
-    <Image style={styles.icon} source={require('./asset/icon/menu.png')}/>
-  )
-  }}/>
+    <Tab.Screen name="OtherMenu" component={OtherMenuScreen} options={{title:'เมนูอื่นๆ'}}/>
 
   </Tab.Navigator>
 )
@@ -141,6 +131,8 @@ const InfoStackScreen = ({ navigation }) =>(
 const OtherMenuScreen = () =>(
   <OtherMenuStack.Navigator>
     <OtherMenuStack.Screen name="OtherMenu" component={OtherMenu} options={{title:'เมนูอื่นๆ'}}/>
+    <OtherMenuStack.Screen name="SlideShow" component={SlideShow} options={{title:'Slide'}}/>
+    
   </OtherMenuStack.Navigator>
 )
 

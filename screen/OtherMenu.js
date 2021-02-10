@@ -1,14 +1,17 @@
 import React from 'react';
-import {View, Text, SafeAreaView, StyleSheet} from 'react-native';
+import {View, Text, SafeAreaView, StyleSheet, Button} from 'react-native';
 
-const Info =()=> {
+const Info =({navigation})=> {
   return (
     <SafeAreaView style={styles.container}>
       <View style={{alignItems:'center'}}>
         <Text style={{fontSize:25}}>
             แสดง Icon ของหน้าเมนูอื่นๆ
         </Text>
-
+        <Button
+        title = "Slide"
+        onPress = {()=>navigation.navigate('SlideShow')}
+        />
       </View>
     </SafeAreaView>
   );
