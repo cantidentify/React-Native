@@ -68,17 +68,9 @@ buck-out/
 /node_modules/*
 /temp/*
 
-/.buckconfig
-/.eslintrc
-/.flowconfig
-/.prettierrc
-/.watchmanconfig
-/app.json
-/babel.config
-/index
-/metro.config
-/package.json
-/package-lock.json
-/README.md
-/temp
-/yarn.lock
+
+.eslintrc.js
+.prettierrc.js
+index.js
+metro.config.js
+temp.js
