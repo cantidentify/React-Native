@@ -74,3 +74,9 @@ buck-out/
 index.js
 metro.config.js
 temp.js
+.buckconfig
+.flowconfig
+.watchmanconfig
+app.json
+babel.config.js
+yarn.lock
