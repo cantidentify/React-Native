@@ -59,13 +59,9 @@ buck-out/
 /ios/Pods/
 
 /__tests__/*
-/android/*
-/ios/*
-/node_modules/*
-/__tests__/*
-/android/*
-/ios/*
-/node_modules/*
+/android/
+/ios/
+/__tests__/
 /temp/*
 
 

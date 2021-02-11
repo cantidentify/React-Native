@@ -24,8 +24,6 @@ import SlideShow from "./screen/SlideShow";
 
 const Tab = createBottomTabNavigator();
 
-const Stack = createStackNavigator();
-
 const HomeStack = createStackNavigator();
 const LocationStack = createStackNavigator();
 const NewsStack = createStackNavigator();
@@ -34,20 +32,7 @@ const OtherMenuStack = createStackNavigator();
 
 
 const BottonTab = () => (
-  <Stack.Navigator
-  screenOptions={{
-    cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS
-  }}
-  >
-    <Stack.Screen name="main" component={mainTab} options={{headerShown: false}} />
-    <Stack.Screen name="Info" component={InfoStackScreen} options={{headerShown: false}} />
-    <Stack.Screen name="SlideShow" component={SlideShow} options={{title:'Slide'}}/>
-    
-  </Stack.Navigator>
-)
-
-const mainTab = () =>(
-<Tab.Navigator initialRouteName="Home"
+  <Tab.Navigator initialRouteName="Home"
   
   screenOptions={({ route }) => ({
     tabBarIcon: ({ focused, color }) => {
@@ -96,7 +81,7 @@ const HomeStackScreen = () =>(
   }} 
     />
 
-    {/* {<HomeStack.Screen name="Info" component={InfoStackScreen} options={{headerShown: false}} /> } */}
+    { <HomeStack.Screen name="Info" component={InfoStackScreen} options={{headerShown: false}} /> }
   </HomeStack.Navigator>
 )
 
@@ -169,7 +154,7 @@ const OtherMenuScreen = () =>(
   }}
   >
     <OtherMenuStack.Screen name="OtherMenu" component={OtherMenu} options={{title:'เมนูอื่นๆ'}}/>
-    {/* <OtherMenuStack.Screen name="SlideShow" component={SlideShow} options={{title:'Slide'}}/> */}
+    <OtherMenuStack.Screen name="SlideShow" component={SlideShow} options={{title:'Slide'}}/>
     
   </OtherMenuStack.Navigator>
 )

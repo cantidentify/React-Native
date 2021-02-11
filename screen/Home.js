@@ -9,6 +9,8 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
+import slideShow from './SlideShow';
+
 
 const Home = ({navigation}) => {
   return (
@@ -60,8 +62,11 @@ const Home = ({navigation}) => {
         </View>
 
         <View style={styles.box3}>
+          <View style={styles.textCover}>
+            <Text style={styles.coverTextStyle}>กิจกรรม และข่าวสารต่างๆ</Text>
+          </View>
           <View style={styles.textBackground}>
-            <Text style={styles.topBoxText}>ประกาศ</Text>
+          {slideShow()}
           </View>
         </View>
       </View>
@@ -110,10 +115,21 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   box3: {
+    justifyContent:'center',
     marginTop: 20,
     width: '100%',
-    height: 100,
-    backgroundColor: '#e27802',
+    height: 200,
+    backgroundColor: 'white',
+  },
+  textCover:{
+    marginLeft:20,
+    padding:10
+  },
+  coverTextStyle:{
+    fontSize:15,
+    opacity:0.6,
+    fontWeight:'bold'
+    
   },
   textBackground: {
     backgroundColor: 'white',

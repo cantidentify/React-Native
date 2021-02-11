@@ -1,10 +1,11 @@
 import React from 'react';
-import {View, Text, SafeAreaView, StyleSheet} from 'react-native';
+import {View, Text, SafeAreaView, StyleSheet, ScrollView} from 'react-native';
 
 const Info =()=> {
   return (
     <SafeAreaView style={styles.container}>
-      <View>
+      <ScrollView>
+
         {/* <View style={styles.header}>
           <View style={{}}>
             <Text style={{color: 'black'}}>Home</Text>
@@ -21,9 +22,20 @@ const Info =()=> {
 
         <View style={styles.box3}>
           <Text style={styles.topBox}>ประวัติความเป็นมา</Text>
-        </View>
+          <Text style={styles.detailText}>
+          วัดเทพลีลา หรือชื่อเดิมคือ วัดตึก เป็นพระอารามหลวงชนิดสามัญ สังกัดคณะสงฆ์มหานิกาย[1] ตั้งอยู่ในแขวงหัวหมาก เขตบางกะปิ กรุงเทพมหานคร ริมคลองแสนแสบ
 
-      </View>
+เจ้าพระยาบดินทรเดชา (สิงห์ สิงหเสนี) ซึ่งเป็นผู้ดูแลการขุดคลองแสนแสบ ในระหว่างที่ขุดคลองบางขนากนั้น นายทหารได้พบพระพุทธรูปปางลีลาศิลปะสุโขทัย เจ้าพระยาบดินทรเดชา (สิงห์ สิงหเสนี) จึงให้สร้างวัดขึ้น สันนิษฐานว่าสร้างขึ้นในช่วง พ.ศ. 2381–2382 ก่อนหน้าที่เจ้าพระยาบดินทรเดชา (สิงห์ สิงหเสนี) จะยกทัพไปเมืองพระตะบอง ภายหลังสร้างวัดแล้วได้อัญเชิญพระพุทธรูปปางลีลาที่ประดิษฐานที่ริมคลองแสนแสบองค์นั้นมาประดิษฐานเป็นพระประธานในพระอุโบสถ และตั้งชื่อวัดว่า วัดเทพลีลา
+
+โบราณสถานสำคัญในวัดเทพลีลา ที่สันนิษฐานว่าสร้างขึ้นในสมัยที่เจ้าพระยาบดินทรเดชา (สิงห์ สิงหเสนี) ได้แก่ พระเจดีย์ย่อมุมไม้สิบสองทรงเครื่อง ด้านหน้าพระวิหารหลังเก่า ซึ่งมีลักษณะรูปแบบเป็นพระเจดีย์ศิลปะร่วมสมัยรัชกาลที่ 3[2]
+
+ในปี พ.ศ. 2549 มีการยกฐานะวัดเทพลีลาขึ้นเป็นพระอารามหลวงในโอกาสที่พระบาทสมเด็จพระมหาภูมิพลอดุลยเดชมหาราชทรงครองสิริราชสมบัติครบ 60 ปี[3] เจ้าอาวาสองค์ปัจจุบันคือ พระเทพรัตนากร (ประสาร เตชสีโล)[4]
+          </Text>
+        </View>
+        
+
+
+      </ScrollView>
     </SafeAreaView>
   );
 }
@@ -34,6 +46,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f6f6f6',
+    marginLeft:14,
+    marginRight:14
   },
   header: {
     alignItems: 'center',
@@ -71,8 +85,7 @@ const styles = StyleSheet.create({
   box3: {
     marginTop: 20,
     width: '100%',
-    height: 100,
-    backgroundColor: '#e27802',
+    backgroundColor: 'white',
   },
   icon1: {
     borderRadius: 10,
@@ -86,6 +99,10 @@ const styles = StyleSheet.create({
     color: 'black',
     fontSize: 21,
     fontWeight: 'bold',
+    marginBottom:14
+  },
+  detailText:{
+    fontSize:16
   },
   buttom_navigator:{
     backgroundColor: 'white',
