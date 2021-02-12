@@ -1,21 +1,57 @@
 import React from 'react';
-import {View, Text, SafeAreaView, StyleSheet, Button} from 'react-native';
+import {View, Text, SafeAreaView, StyleSheet, Button, TouchableOpacity, Image} from 'react-native';
 
-const Info =({navigation})=> {
+
+const Seperator = () => <View style={styles.seperator} />;
+
+const Info = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
-      <View style={{alignItems:'center'}}>
-        <Text style={{fontSize:25}}>
-            แสดง Icon ของหน้าเมนูอื่นๆ
-        </Text>
-        <Button
-        title = "Slide"
-        onPress = {()=>navigation.navigate('SlideShow')}
-        />
+      <View style={styles.detail}>
+        <View style={styles.otherMenu}>
+
+          <View style={styles.otherMenuIcon}>
+            
+          <TouchableOpacity
+            style={styles.shadowButtonGallery}
+            onPress={() => alert('hi')}>
+            <View style={{alignItems: 'center',marginTop:10}}>
+              <Image
+                style={styles.icon}
+                source={require('../asset/icon/photo.png')}
+              />
+              <Text style={styles.iconTextGallery}>Gallery</Text>
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.shadowButtonInfo}
+            onPress={() => alert('hi')}>
+            <View style={{alignItems: 'center',marginTop:10}}>
+              <Image
+                style={styles.icon}
+                source={require('../asset/icon/temple.png')}
+              />
+              <Text style={styles.iconTextInfo}>ประวัติ</Text>
+            </View>
+          </TouchableOpacity>
+          </View>
+
+          <Seperator/>
+
+        </View>
+        <View style={styles.contact}>
+          <Text style={styles.contactHeader}>ช่องทางติดต่อ</Text>
+        </View>
+
+        {/* <Button
+          title="Slide"
+          onPress={() => navigation.navigate('SlideShow')}
+        /> */}
       </View>
     </SafeAreaView>
   );
-}
+};
 
 export default Info;
 
@@ -24,51 +60,22 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#f6f6f6',
   },
-  header: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    padding: 10,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 1,
-    height:50,
-  },
-  headerfont: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#ff884b',
-  },
-  box1: {
-    marginTop: 30,
-    justifyContent: 'center',
-    width: '100%',
-    height: 170,
-    backgroundColor: '#e27802',
-  },
-  box2: {
-    padding: 15,
-    justifyContent: 'space-around',
+  detail: {
     backgroundColor: 'white',
-    marginTop: 20,
-    flexDirection: 'row',
+    flex:1
   },
-  box3: {
-    marginTop: 20,
-    width: '100%',
-    height: 100,
-    backgroundColor: '#e27802',
+  otherMenu:{
+    marginTop:20,
   },
-  icon1: {
-    borderRadius: 10,
+  otherMenuIcon:{
+    flexDirection:'row',
+    justifyContent:'center'
+  },
+  icon: {
     justifyContent: 'center',
-    backgroundColor: '#e27802',
-    height: 100,
-    width: 100,
+    height: 50,
+    width: 50,
+    marginTop:4
   },
   topBox: {
     backgroundColor: 'white',
@@ -76,20 +83,61 @@ const styles = StyleSheet.create({
     fontSize: 21,
     fontWeight: 'bold',
   },
-  buttom_navigator:{
-    backgroundColor: 'white',
-    marginTop:20,
-    
-    height:50,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 5,
-    },
-    shadowOpacity: 1,
-    shadowRadius: 3.84,
-    elevation: 9,
-    
-    
+  shadowButtonGallery: {
+    shadowColor: 'rgba(0,0,0, .4)', // IOS
+    shadowOffset: {height: 1, width: 1}, // IOS
+    shadowOpacity: 1, // IOS
+    shadowRadius: 1, //IOS
+    backgroundColor: '#aec7ea',
+    elevation: 4, // Android
+    height: 80,
+    width: 80,
+    borderRadius: 50,
+
+  },
+  iconTextGallery: {
+    textAlign: 'center',
+    marginTop: 26,
+    opacity:0.6,
+    fontWeight:'bold',
+    fontSize:14,
+    color:'black'
+  },
+  shadowButtonInfo: {
+    shadowColor: 'rgba(0,0,0, .4)', // IOS
+    shadowOffset: {height: 1, width: 1}, // IOS
+    shadowOpacity: 1, // IOS
+    shadowRadius: 1, //IOS
+    backgroundColor: '#fef3ee',
+    elevation: 4, // Android
+    height: 80,
+    width: 80,
+    borderRadius: 50,
+    marginLeft:80
+  },
+  iconTextInfo: {
+    textAlign: 'center',
+    marginTop: 26,
+    opacity:0.6,
+    fontWeight:'bold',
+    fontSize:14,
+    color:'black'
+  },
+  seperator: {
+    marginTop:60,
+    marginHorizontal:20,
+    borderBottomColor: 'grey',
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    opacity:0.13,
+    borderWidth:1.5
+  },
+  contact:{
+    marginVertical:20
+  },
+  contactHeader:{
+    fontSize:20,
+    textAlign:'center',
+    opacity:0.6,
+    fontWeight:'bold'
   }
 });
