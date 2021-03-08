@@ -14,7 +14,7 @@ const Info = ({navigation}) => {
             
           <TouchableOpacity
             style={styles.shadowButtonGallery}
-            onPress={() => alert('hi')}>
+            onPress={() => navigation.navigate('Gallerry')}>
             <View style={{alignItems: 'center',marginTop:10}}>
               <Image
                 style={styles.icon}
@@ -26,7 +26,7 @@ const Info = ({navigation}) => {
 
           <TouchableOpacity
             style={styles.shadowButtonInfo}
-            onPress={() => alert('hi')}>
+            onPress={() => navigation.navigate('Info')}>
             <View style={{alignItems: 'center',marginTop:10}}>
               <Image
                 style={styles.icon}

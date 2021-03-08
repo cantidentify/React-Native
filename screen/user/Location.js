@@ -4,33 +4,49 @@ import {
   View,
   StyleSheet,
   SafeAreaView,
-  Button,
   Alert,
   Image,
+  ScrollView
 } from 'react-native';
+import { DataTable } from 'react-native-paper';
 
 const App = () => (
   <SafeAreaView style={styles.container}>
-    <View>
-      <View style={styles.box}>
-        <Text style={styles.title}>สถานที่ในวัด</Text>
-        <View style={styles.imageBox}>
-          <Text style={styles.imageText}>รูปภาพ</Text>
+    <ScrollView>
+      <View>
+        <Image
+          style={styles.MainImage}
+          source={require('../../asset/map/location1.jpeg')}
+        />
+      </View>
+      <View style={styles.cardBox}>
+        <Text style={styles.header}>การเดินทาง</Text>
+        <View>
+          <DataTable>
+            <DataTable.Row>
+              <DataTable.Cell>รถไฟ</DataTable.Cell>
+              <DataTable.Cell>ARL รถไฟฟ้าเชื่อมท่าอากาศยานสุวรรณภูมิ</DataTable.Cell>
+            </DataTable.Row>
+
+            <DataTable.Row>
+              <DataTable.Cell>รถบัส</DataTable.Cell>
+              <DataTable.Cell>113, 113 (ปอ.) (AC), 171 (ปอ.) (AC) 501 (ปอ.) (AC), 545 (ปอ.) (AC), 99</DataTable.Cell>
+            </DataTable.Row>
+
+            <DataTable.Row>
+              <DataTable.Cell>เรือ</DataTable.Cell>
+              <DataTable.Cell>สายนิด้า NIDA LINE</DataTable.Cell>
+            </DataTable.Row>
+          </DataTable>
         </View>
       </View>
-      <View style={styles.box}>
-        <Text style={styles.title}>สถานที่ต่างๆ</Text>
-        <View style={styles.secondBox}>
-          <Text style={styles.secondTitle}>เขตพุทธาวาส</Text>
-        </View>
-        <View style={styles.secondBox}>
-          <Text style={styles.secondTitle}>เขตสังฆาวาส</Text>
-        </View>
-        <View style={styles.secondBox}>
-          <Text style={styles.secondTitle}>เขตธรณีสงฆ์</Text>
-        </View>
+      <View style={styles.cardBox}>
+        <Image
+          style={styles.MainImage}
+          source={require('../../asset/map/location2.png')}
+        />
       </View>
-    </View>
+    </ScrollView>
   </SafeAreaView>
 );
 
@@ -39,57 +55,29 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     margin: 10,
   },
-  header: {
-    height: 50,
-    backgroundColor: '#00BF74',
+  MainImage: {
     justifyContent: 'center',
-    alignItems: 'center',
-  },
-  headerText: {
-    fontSize: 18,
-    color: 'white',
-    fontFamily: '',
-    fontWeight: 'bold',
-  },
-  box: {
-    paddingTop: 10,
-    marginBottom: 0,
-    backgroundColor: '#FFFFFF',
-    justifyContent: 'center',
-  },
-  title: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 10,
-  },
-  imageBox: {
-    backgroundColor: '#F0F0F0',
-    height: 100,
-    borderRadius: 7,
-  },
-  imageText: {
-    margin: 'auto',
-    color: '#7CC5A8',
-    fontSize: 25,
-  },
-  imageMap: {
     width: '100%',
-    height: 240,
-    backgroundColor: 'black',
+    height: 320,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: '#E5E5E5',
+    marginBottom: 10
   },
-  secondBox: {
-    backgroundColor: '#F0F0F0',
-    borderRadius: 7,
-    marginBottom: 5,
+  cardBox:{
+    backgroundColor: 'white',
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: '#E5E5E5',
+    marginBottom: 10
   },
-  secondTitle: {
-    margin: 'auto',
-    paddingTop: 10,
+  header:{
     fontSize: 17,
     fontWeight: 'bold',
-    color: '#41A77F',
-    marginBottom: 10,
-  },
+    color:'#292929',
+    marginLeft: 8,
+    marginTop: 8,
+  }
 });
 
 export default App;
