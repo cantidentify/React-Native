@@ -24,7 +24,7 @@ const slideShow = () =>{
         <SliderBox
           images={imageSource}
           onCurrentImagePressed={index =>
-            pressLink({index})
+            pressLink(alert(index))
           }
           autoplay
           circleLoop
