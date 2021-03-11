@@ -1,4 +1,4 @@
-import React from "react";
+import React , {useEffect} from "react";
 import { View, SafeAreaView, StyleSheet, Image, ScrollView } from "react-native";
 import { TextInput, Text, Button } from "react-native-paper";
 import axios from 'axios'
@@ -6,6 +6,30 @@ import axios from 'axios'
 const Login = () => {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
+
+  
+  useEffect(
+    () => {
+
+
+    },
+    [],
+  )
+
+  async function login(){
+
+    let res = await axios.post('https://watthepleela.herokuapp.com/get_token',{Username:username,Password:password})
+
+    if(res.data.Error == "Invalid Username or Password"){
+      alert(res.data.Error)
+
+    }
+    else{
+      alert(res.data.access_token)
+    }
+    
+  
+  }
 
   return (
     <View style={styles.container}>
@@ -38,7 +62,7 @@ const Login = () => {
         style={{ marginTop: 50, width: "80%", height: 50}}
         color='#64b5f6'
         mode="contained"
-        onPress={() => console.log("Pressed")}
+        onPress={() => login()}
       >
         LOGIN
       </Button>
