@@ -18,6 +18,7 @@ import Info from "./user/Info";
 import OtherMenu from "./user/OtherMenu";
 import SlideShow from "./user/SlideShow";
 import Gallerry from "./user/Gallery";
+import Admin from "./Admin_stack";
 
 const Tab = createBottomTabNavigator();
 
@@ -130,6 +131,15 @@ const HomeStackScreen = () => (
       component={Gallerry}
       options={{
         headerTitle: "Gallerry",
+        headerTitleStyle: { alignSelf: "center" },
+      }}
+    />
+
+    <HomeStack.Screen
+      name="Admin"
+      component={Admin}
+      options={{
+        headerTitle: "Admin",
         headerTitleStyle: { alignSelf: "center" },
       }}
     />

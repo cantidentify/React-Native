@@ -1,10 +1,23 @@
-import React from 'react';
+import React,{useState} from 'react';
 import {View, Text, SafeAreaView, StyleSheet, Button, TouchableOpacity, Image} from 'react-native';
 
 
 const Seperator = () => <View style={styles.seperator} />;
 
 const Info = ({navigation}) => {
+
+  const [count,setcount] = useState(0)
+
+  function openadmin(){
+    setcount(count+1);
+    if (count > 4){
+      setcount(0)
+      navigation.navigate('Admin')
+
+    }
+    
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.detail}>
@@ -40,6 +53,12 @@ const Info = ({navigation}) => {
           <Seperator/>
 
         </View>
+        <TouchableOpacity
+            onPress={() => openadmin()}>
+            <View style={{width:'100%' , height:20}}>
+            </View>
+          </TouchableOpacity>
+
         <View style={styles.contact}>
           <Text style={styles.contactHeader}>ช่องทางติดต่อ</Text>
         </View>
@@ -132,7 +151,7 @@ const styles = StyleSheet.create({
     borderWidth:1.5
   },
   contact:{
-    marginVertical:20
+    marginVertical:5
   },
   contactHeader:{
     fontSize:20,
