@@ -26,6 +26,7 @@ const Login = () => {
     }
     else{
       alert(res.data.access_token)
+      
     }
     
   

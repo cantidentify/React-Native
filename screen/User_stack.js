@@ -21,40 +21,10 @@ import Gallerry from "./user/Gallery";
 import Admin from "./Admin_stack";
 
 const Tab = createBottomTabNavigator();
-
 const Stack = createStackNavigator();
 
-const HomeStack = createStackNavigator();
-const LocationStack = createStackNavigator();
-const NewsStack = createStackNavigator();
-const InformationStack = createStackNavigator();
-const OtherMenuStack = createStackNavigator();
 
-const BottonTab = () => (
-  <Stack.Navigator
-    screenOptions={{
-      cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-    }}
-  >
-    <Stack.Screen
-      name="main"
-      component={mainTab}
-      options={{ headerShown: false }}
-    />
-    <Stack.Screen
-      name="Info"
-      component={InfoStackScreen}
-      options={{ headerShown: false }}
-    />
-    <Stack.Screen
-      name="SlideShow"
-      component={SlideShow}
-      options={{ title: "Slide" }}
-    />
-  </Stack.Navigator>
-);
-
-const mainTab = () => (
+const ButtomTab = () => (
   <Tab.Navigator
     initialRouteName="Home"
     screenOptions={({ route }) => ({
@@ -80,13 +50,16 @@ const mainTab = () => (
         return <Image style={styles.icon} source={source} />;
       },
     })}
-    tabBarOptions={{
+    tabBarOptions={({route})=>({
+      visible: false,
       activeTintColor: "tomato",
       inactiveTintColor: "gray",
-    }}
+      style:{opacity: ()=>{if(route.name==="Admin"){return 0}}}
+    })}
   >
     <Tab.Screen
       name="Home"
+
       component={HomeStackScreen}
       options={{ title: "หน้าหลัก" }}
     />
@@ -112,21 +85,21 @@ const mainTab = () => (
 );
 
 const HomeStackScreen = () => (
-  <HomeStack.Navigator
+  <Stack.Navigator
     screenOptions={{
       cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
     }}
   >
-    <HomeStack.Screen
+    <Stack.Screen
       name="Home"
       component={Home}
       options={{
         headerTitle: "วัดเทพลีลาพระอารามหลวง",
-        headerTitleStyle: { alignSelf: "center" },
+        headerTitleStyle: { alignSelf: "center" }
       }}
     />
 
-    <HomeStack.Screen
+    <Stack.Screen
       name="Gallerry"
       component={Gallerry}
       options={{
@@ -135,27 +108,28 @@ const HomeStackScreen = () => (
       }}
     />
 
-    <HomeStack.Screen
-      name="Admin"
-      component={Admin}
+<Stack.Screen
+      name="Info"
+      component={Info}
       options={{
-        headerTitle: "Admin",
+        headerTitle: "Information",
         headerTitleStyle: { alignSelf: "center" },
       }}
     />
 
+
     {/* {<HomeStack.Screen name="Info" component={InfoStackScreen} options={{headerShown: false}} /> } */}
-  </HomeStack.Navigator>
+  </Stack.Navigator>
 );
 
 const LocationStackScreen = ({ navigation }) => (
-  <LocationStack.Navigator
+  <Stack.Navigator
     initialRouteName="Location"
     screenOptions={{
       cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
     }}
   >
-    <LocationStack.Screen
+    <Stack.Screen
       name="Location"
       component={Location}
       options={{
@@ -169,16 +143,16 @@ const LocationStackScreen = ({ navigation }) => (
         },
       }}
     />
-  </LocationStack.Navigator>
+  </Stack.Navigator>
 );
 
 const ActivityStackScreen = ({ navigation }) => (
-  <NewsStack.Navigator
+  <Stack.Navigator
     screenOptions={{
       cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
     }}
   >
-    <NewsStack.Screen
+    <Stack.Screen
       name="Activity"
       component={Activity}
       options={{
@@ -192,37 +166,19 @@ const ActivityStackScreen = ({ navigation }) => (
         },
       }}
     />
-  </NewsStack.Navigator>
+  </Stack.Navigator>
 );
 
-const InfoStackScreen = ({ navigation, route }) => (
-  <InformationStack.Navigator
+
+function OtherMenuScreen() {
+  
+  return( <Stack.Navigator
     screenOptions={{
       cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+      
     }}
   >
-    <InformationStack.Screen
-      name="Info"
-      component={Info}
-      options={{
-        title: "ประวัติความเป็นมา",
-        headerTitleStyle: { alignSelf: "center" },
-
-        headerTitleContainerStyle: {
-          left: 0, // THIS RIGHT HERE
-        },
-      }}
-    />
-  </InformationStack.Navigator>
-);
-
-const OtherMenuScreen = () => (
-  <OtherMenuStack.Navigator
-    screenOptions={{
-      cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-    }}
-  >
-    <OtherMenuStack.Screen
+    <Stack.Screen
       name="OtherMenu"
       component={OtherMenu}
       options={{
@@ -234,7 +190,7 @@ const OtherMenuScreen = () => (
         },
       }}
     />
-    <OtherMenuStack.Screen
+    <Stack.Screen
       name="Gallerry"
       component={Gallerry}
       options={{
@@ -242,7 +198,7 @@ const OtherMenuScreen = () => (
         headerTitleStyle: { alignSelf: "center" },
       }}
     />
-    <OtherMenuStack.Screen
+    <Stack.Screen
       name="ประวัติความเป็นมา"
       component={Info}
       options={{
@@ -251,14 +207,26 @@ const OtherMenuScreen = () => (
       }}
     />
 
+
+
+    
+
+
+
     {/* <OtherMenuStack.Screen name="SlideShow" component={SlideShow} options={{title:'Slide'}}/> */}
-  </OtherMenuStack.Navigator>
-);
+  </Stack.Navigator>)
+ 
+}
+
+
 
 export default function App() {
   return (
     <NavigationContainer>
-      <BottonTab />
+      <Stack.Navigator>
+      <Stack.Screen name="Home" component={ButtomTab} options={{headerShown: false}} />
+      <Stack.Screen name="Admin" component={Admin} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }

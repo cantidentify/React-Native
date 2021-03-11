@@ -23,7 +23,8 @@ const GalleryStack = createStackNavigator();
 const LoginStack = createStackNavigator();
 const RootStack = createStackNavigator();
 
-const LoginStackScreen = ( {navigation} ) =>(
+const LoginStackScreen = ( {navigation} ) => {
+  return(
   <LoginStack.Navigator
     screenOptions={{
       cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
@@ -47,7 +48,8 @@ const LoginStackScreen = ( {navigation} ) =>(
 
     {/* {<HomeStack.Screen name="Info" component={InfoStackScreen} options={{headerShown: false}} /> } */}
   </LoginStack.Navigator>
-)
+  )
+}
 
 const ActivityStackScreen = ( {navigation} ) => (
   <ActivityStack.Navigator
