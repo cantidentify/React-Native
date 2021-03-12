@@ -12,7 +12,7 @@ const Info = ({navigation}) => {
     setcount(count+1);
     if (count > 4){
       setcount(0)
-      navigation.navigate('Admin')
+      navigation.navigate('Login')
 
     }
     

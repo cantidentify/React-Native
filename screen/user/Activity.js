@@ -1,4 +1,5 @@
 import React , {useEffect,useState} from 'react';
+import { useFocusEffect } from '@react-navigation/native';
 import axios from 'axios'
 import {
   Text,
@@ -12,27 +13,39 @@ import {
 
 import { Avatar, Button, Card, Title, Paragraph , ActivityIndicator } from 'react-native-paper';
 
-export default function App(){
+export default function App({ route }){
 
   let [loading,setloading] = useState(true)
   let [event,setevent] = useState([])
+ 
 
 
-   useEffect(
-    () => {
-      async function api(){
 
-        let res = await axios.get('https://watthepleela.herokuapp.com/event')
-        setevent(res.data.results)
-        setloading(false)
+  useFocusEffect(
+    React.useCallback(() => {
+      let isActive = true;
+
+      async function api() {
+        try{
+          let res = await axios.get('https://watthepleela.herokuapp.com/event')
+       
+
+          if(isActive){
+            setevent(res.data.results)
+            setloading(false)
+          }
+
+        }
+        catch(e){}
+
         
-      
       }
       api()
-
-    },
-    [],
+      return ()=>{ isActive = false;}
+    }, [event])
   );
+  
+
 
 
 return(
@@ -44,7 +57,7 @@ return(
        <Card.Content style={styles.cardContent}>
          <Title style={styles.header}>{e.Text}</Title>
        </Card.Content>
-       <Card.Cover source={{ uri: e.Img }} />
+       <Card.Cover source={{ uri: e.Img_uri }} />
      </Card>)
      })}
 

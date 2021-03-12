@@ -1,39 +1,57 @@
-import React , {useEffect} from "react";
-import { View, SafeAreaView, StyleSheet, Image, ScrollView } from "react-native";
+import React  from "react";
+import { View, SafeAreaView, StyleSheet, Image, ScrollView ,ActivityIndicator,Modal} from "react-native";
 import { TextInput, Text, Button } from "react-native-paper";
 import axios from 'axios'
 
-const Login = () => {
+export default function Login({navigation}) {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
-
-  
-  useEffect(
-    () => {
+  const [Loading , setLoading] = React.useState(false);
 
 
-    },
-    [],
-  )
+  async function checkuser(){
 
-  async function login(){
-
+    setLoading(true)
     let res = await axios.post('https://watthepleela.herokuapp.com/get_token',{Username:username,Password:password})
+    setLoading(false)
 
     if(res.data.Error == "Invalid Username or Password"){
       alert(res.data.Error)
+      
 
     }
     else{
-      alert(res.data.access_token)
+      navigation.navigate('Manage',{token : res.data.access_token})
+      
+      
       
     }
+
     
-  
   }
+
+
 
   return (
     <View style={styles.container}>
+
+<Modal
+        animationType="slide"
+        transparent={true}
+        visible={Loading}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          setModalVisible(!modalVisible);
+        }}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+          <ActivityIndicator size="large" color="#da723c"/>
+          </View>
+        </View>
+      </Modal>
+
+      
       <View style={styles.header}>
         <Image
           style={styles.logoImage}
@@ -58,58 +76,22 @@ const Login = () => {
         onChangeText={(password) => setPassword(password)}
         secureTextEntry={true}
       />
+
+   
       <Button
         labelStyle={{ padding:5 , fontWeight:'bold' ,color:'white'}}
         style={{ marginTop: 50, width: "80%", height: 50}}
         color='#64b5f6'
         mode="contained"
-        onPress={() => login()}
+        onPress={() => checkuser()}
       >
         LOGIN
+        
       </Button>
     </View>
   );
 };
 
-const t = () => {
-  const [text, setText] = React.useState("");
-
-  return (
-    <SafeAreaView styles={styles.container}>
-      <View>
-        <View>
-          <View style={styles.header}>
-            <Image
-              style={styles.logoImage}
-              source={require("../../asset/icon/admin2.png")}
-            />
-            <Text style={styles.headerText}>Admin System</Text>
-          </View>
-        </View>
-        <View>
-          <View styles={styles.input}>
-            <TextInput
-              mode="outlined"
-              style={{ width: "80%" }}
-              label="หัวข้อ"
-              value={text}
-              onChangeText={(text) => setHeader(text)}
-            />
-            <TextInput
-              mode="outlined"
-              style={{ width: "80%" }}
-              label="หัวข้อ"
-              value={text}
-              onChangeText={(text) => setHeader(text)}
-            />
-          </View>
-        </View>
-      </View>
-    </SafeAreaView>
-  );
-};
-
-export default Login;
 
 const styles = StyleSheet.create({
   container: {
@@ -134,4 +116,23 @@ const styles = StyleSheet.create({
   input: {
     marginTop: 50,
   },
-});
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+}
+}
+);

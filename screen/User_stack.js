@@ -1,9 +1,6 @@
 import React from "react";
 
 import { Button, Image, StyleSheet } from "react-native";
-
-import Icon from "react-native-vector-icons/FontAwesome5";
-
 import { NavigationContainer } from "@react-navigation/native";
 import {
   createStackNavigator,
@@ -16,9 +13,9 @@ import Location from "./user/Location";
 import Activity from "./user/Activity";
 import Info from "./user/Info";
 import OtherMenu from "./user/OtherMenu";
-import SlideShow from "./user/SlideShow";
 import Gallerry from "./user/Gallery";
-import Admin from "./Admin_stack";
+import Login from "./admin/Login"
+import Manage from "./admin/Manage"
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -26,6 +23,7 @@ const Stack = createStackNavigator();
 
 const ButtomTab = () => (
   <Tab.Navigator
+    
     initialRouteName="Home"
     screenOptions={({ route }) => ({
       tabBarIcon: ({ focused, color }) => {
@@ -155,6 +153,7 @@ const ActivityStackScreen = ({ navigation }) => (
     <Stack.Screen
       name="Activity"
       component={Activity}
+      initialParams={{id:0}}
       options={{
         title: "ข่าวสารและกิจกรรมของวัด",
         headerTitleStyle: { alignSelf: "center" },
@@ -207,13 +206,6 @@ function OtherMenuScreen() {
       }}
     />
 
-
-
-    
-
-
-
-    {/* <OtherMenuStack.Screen name="SlideShow" component={SlideShow} options={{title:'Slide'}}/> */}
   </Stack.Navigator>)
  
 }
@@ -225,7 +217,12 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
       <Stack.Screen name="Home" component={ButtomTab} options={{headerShown: false}} />
-      <Stack.Screen name="Admin" component={Admin} />
+      <Stack.Screen name="Login" component={Login} options={{headerShown: false}}/>
+      <Stack.Screen name="Manage" component={Manage} options={{headerShown: true}}/>
+      
+      {/* === Add Login Page === 
+           Login then Navigate to Admin  And Send token */}
+
       </Stack.Navigator>
     </NavigationContainer>
   );

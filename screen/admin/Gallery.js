@@ -2,56 +2,53 @@ import React ,{useState , useEffect} from 'react'
 import { View, Text ,SafeAreaView,Button ,Image , Modal,TouchableOpacity,StyleSheet,Pressable} from 'react-native'
 import DocumentPicker from 'react-native-document-picker';
 import CameraScreen from './Camera';
+
+
 var RNFS = require('react-native-fs')
+
 export default function Admin() {
 
   const [modalVisible, setModalVisible] = useState(false);
-  let [base64image,setbase64image] = useState()
+  let [base64image,setbase64image] = useState([])
   let [test,setTest] = useState()
+  let [photo,setphoto] = useState()
     
     async function lookfile(){
 
- 
-
-
-        try {
-            const res = await DocumentPicker.pick({
-              type: [DocumentPicker.types.images],
-            });
-            console.log(
-              res.uri,
-              res.type,
-              res.name,
-              res.size
-            );
-
-            const split = res.uri.split('/');
-            const name = split.pop();
-            const inbox = split.pop();
+      try {
+        const results = await DocumentPicker.pickMultiple({
+          type: [DocumentPicker.types.images],
+        });
+  
+        for (const res of results) {
+          console.log(
+            res.uri,
+            res.type, 
+            res.name,
+            res.size
+          );
+  
+          RNFS.readFile(res.uri, "base64").then((res) => {
+            setbase64image(base64image.concat([`data:image/jpg;base64,${res}`]));
             
-
-
-            console.log(res.uri)
-            RNFS.readFile(res.uri, 'base64')
-            .then(res =>{
-            setbase64image(`data:image/jpg;base64,${res}`)
-            console.log(res);
           });
 
-          } catch (err) {
-            if (DocumentPicker.isCancel(err)) {
-
-            } else {
-              throw err;
-            }
-          }
+          
+        }
+  
+      } catch (err) {
+        if (DocumentPicker.isCancel(err)) {
+        } else {
+          throw err;
+        }
+      }
 
 
 
     }
 
     function ImageCallback(props){
-      setbase64image(props)
+      setphoto(props)
     }
 
     function setModal(params) {
@@ -63,7 +60,10 @@ export default function Admin() {
         <View>
             <Button title="Click me to pick File " onPress={()=>lookfile()}/>
             <Text>{test}</Text>
-            <Image style={{width:'50%',height:'50%'}} source={{uri:base64image}}/>
+
+            
+            <Image style={{width:'50%',height:'50%'}} source={{uri:photo}}/>
+            
 
 
 

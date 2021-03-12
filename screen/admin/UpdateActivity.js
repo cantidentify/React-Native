@@ -29,18 +29,26 @@ const App = () => {
       const res = await DocumentPicker.pick({
         type: [DocumentPicker.types.images],
       });
-      console.log(res.uri, res.type, res.name, res.size);
 
-      const split = res.uri.split("/");
-      const name = split.pop();
-      const inbox = split.pop();
 
-      //console.log(res.size)
-      //console.log(res.uri)
-      RNFS.readFile(res.uri, "base64").then((res) => {
-        setbase64image(`data:image/jpg;base64,${res}`);
-        console.log(res);
-      });
+        console.log(
+          res.uri,
+          res.type, 
+          res.name,
+          res.size
+        );
+
+        RNFS.readFile(res.uri, "base64").then((res) => {
+          setbase64image(`data:image/jpg;base64,${res}`);
+          
+        });
+      
+
+     
+
+  
+
+
     } catch (err) {
       if (DocumentPicker.isCancel(err)) {
       } else {
@@ -53,7 +61,7 @@ const App = () => {
     <SafeAreaView style={styles.container}>
       <ScrollView>
         <View style={styles.box}>
-          {/* ///////////////// START เลือกประเทภ /////////////////////// */}
+         
           <Text style={styles.title}>เลือกประเภท</Text>
           <View style={{ justifyContent: "center", flexDirection: "row" }}>
             <View style={{ flexDirection: "row" }}>

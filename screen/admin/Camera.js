@@ -1,18 +1,14 @@
 import React,{useState,useEffect} from 'react'
 import { StyleSheet, Text, View ,TouchableOpacity ,Image,Button,SafeAreaView, Alert} from 'react-native'
 var RNFS = require('react-native-fs')
+import { RNCamera } from 'react-native-camera';
+
 
 export default function CameraScreen({toAdmin,showModal}) {
 
 
   let camera = RNCamera
   const [TakePicture,setTakePicture] = useState("")
-
-
-    
-  useEffect(() => {
-    
-  }, [])
 
 
   async function CameraShot(){
@@ -42,6 +38,11 @@ export default function CameraScreen({toAdmin,showModal}) {
     
   }
 
+  function closemodal(){
+    showModal(false)
+    
+  }
+
 
   
 
@@ -53,21 +54,32 @@ export default function CameraScreen({toAdmin,showModal}) {
      
       {TakePicture!=""?(         
       <View style={{flex:1}}>
+        
         <Image style={{flex:1}} source={{uri:TakePicture}}/>
 
-        <View style={{ flex: 1 ,position:'absolute',top:'90%',left:'5%'}}>
-          <TouchableOpacity onPress={sendpicture}>
-            <Text style={{color:'white',fontSize:18}}> ส่ง</Text>
+          <View style={{position: 'absolute', top: '90%', left: 0, right: 0, bottom: 0, justifyContent: 'center',
+           alignItems: 'center',flexDirection:'row' ,alignContent:'space-between'}}>
+
+<View style={{width:'45%' ,alignItems:'flex-start',marginLeft:10}}>
+            <TouchableOpacity onPress={sendpicture}>
+            <Text style={{color:'white',fontSize:20}}> ส่ง</Text>
           </TouchableOpacity>
+            </View>
 
-      </View>
 
-      <View style={{ flex: 1 ,position:'absolute',top:'90%',left:'75%'}}>
-          <TouchableOpacity onPress={clearPicture}>
-            <Text style={{color:'white',fontSize:18}}> ยกเลิก</Text>
+            <View style={{width:'45%',alignItems:'flex-end',marginRight:10}}>
+            <TouchableOpacity onPress={clearPicture}>
+            <Text style={{color:'white',fontSize:20}}> ยกเลิก</Text>
           </TouchableOpacity>
+            </View>
 
-      </View>
+
+
+            
+
+          </View>
+
+
 
       </View>
         
@@ -88,10 +100,28 @@ export default function CameraScreen({toAdmin,showModal}) {
           buttonNegative: 'ยกเลิก',
         }}
       />
-      <View style={{ flex: 0, flexDirection: 'row', justifyContent: 'center' }}>
+      <View style={{ flex: 0, flexDirection: 'row' ,backgroundColor:'black',justifyContent:'center'}}>
+        <View style={{alignSelf:'center'}}>
         <TouchableOpacity onPress={CameraShot} style={styles.capture}>
         </TouchableOpacity>
+        </View>
+
+        
+        <View>
+        <TouchableOpacity onPress={closemodal} style={{alignSelf:'flex-end'}}>
+          <Text style={styles.cancel}>ยกเลิก</Text>
+        </TouchableOpacity>
+        </View>
+
+
+
       </View>
+
+
+      
+    
+
+      
       </View>
 
       )}
@@ -118,12 +148,12 @@ const styles = StyleSheet.create({
   },
   capture: {
     flex: 0,
-    backgroundColor: '#bbbbbb',
+    backgroundColor: 'white',
     borderRadius: 50,
     padding: 30,
     paddingHorizontal: 30,
-    alignSelf: 'center',
-    margin: 20,
+    margin:20,
+
   },
   button: {
     flex: 0,
@@ -131,5 +161,12 @@ const styles = StyleSheet.create({
     padding: 15,
     alignSelf: 'center',
     margin: 20,
+  }
+  ,cancel:{
+    flex: 0,
+    color:'white',
+    alignSelf: 'center',
+    marginTop:30,
+    fontSize:20
   }
 });
