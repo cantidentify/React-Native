@@ -8588,6 +8588,11 @@ react-native-gesture-handler@^1.9.0:
     invariant "^2.2.4"
     prop-types "^15.7.2"
 
+react-native-image-resizer@^1.4.3:
+  version "1.4.3"
+  resolved "https://registry.yarnpkg.com/react-native-image-resizer/-/react-native-image-resizer-1.4.3.tgz#3663c54e2d14b66880b1a9d325588b2b48949177"
+  integrity sha512-CbLnS7UaXr9KnyT98X5BJZIqK5QTswnTay7VOYTAIrfO047T9F2DQpoZvJOWLsBC77zlp+dKHjiPrZewnR1DYw==
+
 react-native-image-slider-box@^1.0.12:
   version "1.0.12"
   resolved "https://registry.yarnpkg.com/react-native-image-slider-box/-/react-native-image-slider-box-1.0.12.tgz#4abb7b6d26f12859ac059d4fe7555c72a201e23a"
