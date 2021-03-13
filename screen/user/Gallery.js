@@ -1,4 +1,4 @@
-import React from 'react';
+import React , {useState} from 'react';
 import {
   Text,
   View,
@@ -7,10 +7,59 @@ import {
   Button,
   Alert,
   Image,
+  Modal,
+  ActivityIndicator,
   ScrollView,
 } from 'react-native';
 
 import { SliderBox } from "react-native-image-slider-box";
+import { useFocusEffect } from '@react-navigation/native';
+import _ from 'lodash';
+import axios from 'axios';
+
+
+
+export default function App(){
+
+    let [gallery,setgallery] = useState([])
+    let [album,setalbum] = useState()
+
+    useFocusEffect(
+      React.useCallback(() => {
+        let isActive = true;
+  
+        async function api() {
+          try{
+            let res = await axios.get('https://watthepleela.herokuapp.com/gallery')
+           
+  
+            if(isActive){
+              setgallery(res.data.results)
+              setalbum(_.chain(gallery).groupBy('Album').mapValues((x,a)=>x.map((i)=>i.Img_uri)).value())
+              
+
+              
+       
+            }
+  
+          }
+          catch(e){}
+  
+        }
+        api()
+        return ()=>{ isActive = false;}
+      }, [gallery])
+    );
+
+
+    function Mapimage(){
+
+    }
+
+  
+
+    
+
 
 const image1 = [
     "https://scontent.fbkk8-4.fna.fbcdn.net/v/t1.0-9/154247004_3648532571883127_345667366006724873_o.jpg?_nc_cat=100&ccb=3&_nc_sid=0debeb&_nc_eui2=AeGnfelxOABmgFQmuJHGlRW183dz3Yo7nmrzd3Pdijueav7ISSZeU6xuMBCn7XgO3-tszp-Y9LMzOHqFjk2zOdNQ&_nc_ohc=mXfvKQQ6gp8AX9xqu0I&_nc_ht=scontent.fbkk8-4.fna&oh=1fa96ea00165845d61b61c7a4ca6f54c&oe=6061C74F",
@@ -38,45 +87,67 @@ const image3 = [
 
 
 
-const App = () => (
+    return(
+
+      
+
   <SafeAreaView style={styles.container}>
+
+
+      {album==undefined||album=={}?<><Modal
+        animationType="slide"
+        transparent={true}
+        visible={true}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          setModalVisible(!modalVisible);
+        }}
+      >
+      <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+          <ActivityIndicator size="large" color="#da723c"/>
+          </View>
+        </View>
+      </Modal></>:<></>}
+
+      
+  
+
     <ScrollView>
+
     <Text style={styles.title}>แกลลอรี่</Text>
+
+
+
+
     <View>
-      <View style={styles.box}>
-        <Text style={styles.topic}>กิจกรรมต่างๆ</Text>
-        <SliderBox
-          images={image1}
-          onCurrentImagePressed={index =>
-            pressLink({index})
-          }
-          autoplay
-          circleLoop
-          sliderBoxHeight={200}
-          dotColor={'orange'}
-          ImageComponentStyle={{borderRadius: 15, width: '93%', marginTop: 5,}}
-        />
-        <View style={styles.SpaceBox}>
-          
-        </View>
-      </View>
-      <View style={styles.box}>
-        <Text style={styles.topic}>สถานที่ในวัด</Text>
-        <SliderBox
-          images={image2}
-          onCurrentImagePressed={index =>
-            pressLink({index})
-          }
-          autoplay
-          circleLoop
-          sliderBoxHeight={200}
-          dotColor={'orange'}
-          ImageComponentStyle={{borderRadius: 15, width: '93%', marginTop: 5,}}
-        />
-        <View style={styles.SpaceBox}>
-          
-        </View>
-      </View>
+
+      {album!=null||album!=undefined? Object.entries(album).map(([key,value],i)=>{
+                     return ( <View style={styles.box} key={`Image${i}`}>
+                        <Text style={styles.topic}>{key}</Text>
+                        <SliderBox
+                          images={value}
+                          onCurrentImagePressed={index =>
+                            pressLink({index})
+                          }
+                          autoplay
+                          circleLoop
+                          sliderBoxHeight={200}
+                          dotColor={'orange'}
+                          ImageComponentStyle={{borderRadius: 15, width: '93%', marginTop: 5,}}
+                        />
+                        <View style={styles.SpaceBox}>
+                          
+                        </View>
+                      </View>)
+                
+              })
+              :null}
+
+  
+
+
+
       <View style={styles.box}>
         <Text style={styles.topic}>26 ก.พ. 64 วันมาฆบูชา</Text>
         <SliderBox
@@ -96,8 +167,9 @@ const App = () => (
       </View>
     </View>
     </ScrollView>
-  </SafeAreaView>
-);
+  </SafeAreaView>)
+
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -139,6 +211,24 @@ const styles = StyleSheet.create({
     height: 20,
     borderRadius: 7,
   },
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+}
 });
 
-export default App;
+

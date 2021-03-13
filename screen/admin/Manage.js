@@ -8,6 +8,7 @@ import { faFileImage ,faCameraRetro } from '@fortawesome/free-solid-svg-icons'
 import {TextInput as PaperInput } from 'react-native-paper';
 import DocumentPicker from 'react-native-document-picker';
 import ImageResizer from 'react-native-image-resizer';
+import { SliderBox } from "react-native-image-slider-box";
 
 var RNFS = require('react-native-fs')
 
@@ -52,15 +53,10 @@ export default function Manage({route,navigation}) {
           });
     
       
-            console.log(
-              res.uri,
-              res.type, 
-              res.name,
-              res.size
-            );
+  
 
             ImageResizer.createResizedImage(res.uri, 400, 400, 'JPEG', 50, 0).then((resizedImageUri) => {
-                console.log(resizedImageUri)
+
                 RNFS.readFile(resizedImageUri.uri, "base64").then((res) => {
                     setsingleImg(`data:image/jpg;base64,${res}`);
                   
@@ -96,12 +92,6 @@ export default function Manage({route,navigation}) {
     
             for (let res of results){
                 
-            console.log(
-                res.uri,
-                res.type, 
-                res.name,
-                res.size
-              );
       
               ImageResizer.createResizedImage(res.uri, 400, 400, 'JPEG', 50, 0).then((resizedImageUri) => {
                 RNFS.readFile(resizedImageUri.uri, "base64").then((res) => {
@@ -131,7 +121,6 @@ export default function Manage({route,navigation}) {
       async function uploadActivity(){
 
         setloading(true)
-        console.log(token)
 
        
         try {
@@ -170,11 +159,8 @@ export default function Manage({route,navigation}) {
       async function uploadGallery(){
 
         setloading(true)
-        console.log(token)
-
        
         try {
-
         if(gallery.length>1){
         for(let i of gallery){
             
@@ -228,6 +214,46 @@ export default function Manage({route,navigation}) {
 
 
       }
+
+    function  renderslider() {
+      if(gallery.length>0){
+        if(gallery.length>1){
+            return (        <SliderBox
+              images={gallery}
+              circleLoop
+              sliderBoxHeight={200}
+              dotColor={'#28527a'}
+              ImageComponentStyle={{borderRadius: 15, width: '93%', marginTop: 5,}}
+            />)
+        }
+        else{
+          return <Image style={{width:'100%',height:150}} source={{uri:gallery[0]}}/>
+
+        }
+      }
+      else{
+        return (
+          <>     
+          <View>
+            <TouchableOpacity onPress={()=>setShowModal2(true)}>
+                <FontAwesomeIcon icon={faCameraRetro} size={100} color='white'/> 
+            </TouchableOpacity>
+        </View>
+
+     
+        <View>
+            <Text style={{fontSize:30,marginTop:20,color:'white'}}> Or </Text>
+        </View>
+    
+        <View>
+            <TouchableOpacity onPress={()=>look_multiple_file()}>
+                <FontAwesomeIcon icon={faFileImage} size={100} color='white' /> 
+            </TouchableOpacity>
+        </View>
+        </>
+        )
+      }
+    }
 
     return (
 
@@ -355,29 +381,9 @@ export default function Manage({route,navigation}) {
             <>
 
             <View style={{backgroundColor:'#85603f',flexDirection:'row',justifyContent:'center',padding:20}}>
-                {gallery.length>0?<Image style={{width:'100%',height:150}} source={{uri:gallery[0]}}/>
-                
-                :  
-                 <>     
-                  <View>
-                    <TouchableOpacity onPress={()=>setShowModal2(true)}>
-                        <FontAwesomeIcon icon={faCameraRetro} size={100} color='white'/> 
-                    </TouchableOpacity>
-                </View>
 
-             
-                <View>
-                    <Text style={{fontSize:30,marginTop:20,color:'white'}}> Or </Text>
-                </View>
-            
-                <View>
-                    <TouchableOpacity onPress={()=>look_multiple_file()}>
-                        <FontAwesomeIcon icon={faFileImage} size={100} color='white' /> 
-                    </TouchableOpacity>
-                </View>
-                </>
-                
-                }
+              {renderslider()}
+              
      
 
             </View>
