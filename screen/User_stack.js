@@ -16,6 +16,7 @@ import OtherMenu from "./user/OtherMenu";
 import Gallerry from "./user/Gallery";
 import Login from "./admin/Login"
 import Manage from "./admin/Manage"
+import SubGallery from "./user/SubGallery"
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -99,7 +100,7 @@ const HomeStackScreen = () => (
 
     <Stack.Screen
       name="Gallerry"
-      component={Gallerry}
+      component={GalleryScreen}
       options={{
         headerTitle: "Gallerry",
         headerTitleStyle: { alignSelf: "center" },
@@ -168,6 +169,47 @@ const ActivityStackScreen = ({ navigation }) => (
   </Stack.Navigator>
 );
 
+const GalleryScreen = ({ navigation }) => (
+  <Stack.Navigator
+    screenOptions={{
+      cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+    }}
+  >
+    <Stack.Screen
+      name="MainGallery"
+      component={Gallerry}
+      initialParams={{id:0}}
+      options={{
+        title: "Gallery",
+        headerTitleStyle: { alignSelf: "center" },
+        headerLeft: () => (
+          <Button onPress={() => navigation.navigate("Home")} title="Home" />
+        ),
+        headerTitleContainerStyle: {
+          left: 5, // THIS RIGHT HERE
+        },
+      }}
+    />
+
+<Stack.Screen
+      name="SubGallery"
+      component={SubGallery}
+      initialParams={{id:0}}
+      options={{
+        title: "SubGallery",
+        headerTitleStyle: { alignSelf: "center" },
+        headerLeft: () => (
+          <Button onPress={() => navigation.navigate("Home")} title="Home" />
+        ),
+        headerTitleContainerStyle: {
+          left: 5, // THIS RIGHT HERE
+        },
+      }}
+    />
+
+  </Stack.Navigator>
+);
+
 
 function OtherMenuScreen() {
   
@@ -191,7 +233,7 @@ function OtherMenuScreen() {
     />
     <Stack.Screen
       name="Gallerry"
-      component={Gallerry}
+      component={GalleryScreen}
       options={{
         headerTitle: "Gallerry",
         headerTitleStyle: { alignSelf: "center" },

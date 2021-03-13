@@ -38,7 +38,7 @@ const image3 = [
 
 
 
-const App = () => (
+const App = ( {navigation} ) => (
   <SafeAreaView style={styles.container}>
     <ScrollView>
     <Text style={styles.title}>แกลลอรี่</Text>
@@ -47,9 +47,7 @@ const App = () => (
         <Text style={styles.topic}>กิจกรรมต่างๆ</Text>
         <SliderBox
           images={image1}
-          onCurrentImagePressed={index =>
-            pressLink({index})
-          }
+          onCurrentImagePressed={() => navigation.navigate('SubGallery')}
           autoplay
           circleLoop
           sliderBoxHeight={200}
