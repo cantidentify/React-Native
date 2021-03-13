@@ -22,7 +22,7 @@ import axios from 'axios';
 export default function App(){
 
     let [gallery,setgallery] = useState([])
-    let [album,setalbum] = useState()
+    let [album,setalbum] = useState({})
 
     useFocusEffect(
       React.useCallback(() => {
@@ -35,7 +35,7 @@ export default function App(){
   
             if(isActive){
               setgallery(res.data.results)
-              setalbum(_.chain(gallery).groupBy('Album').mapValues((x,a)=>x.map((i)=>i.Img_uri)).value())
+              setalbum(await _.chain(gallery).groupBy('Album').mapValues((x,a)=>x.map((i)=>i.Img_uri)).value())
               
 
               
@@ -93,11 +93,10 @@ const image3 = [
 
   <SafeAreaView style={styles.container}>
 
-
-      {album==undefined||album=={}?<><Modal
+<Modal
         animationType="slide"
         transparent={true}
-        visible={true}
+        visible={album=={}?true:false}
         onRequestClose={() => {
           Alert.alert("Modal has been closed.");
           setModalVisible(!modalVisible);
@@ -108,7 +107,7 @@ const image3 = [
           <ActivityIndicator size="large" color="#da723c"/>
           </View>
         </View>
-      </Modal></>:<></>}
+      </Modal>
 
       
   
@@ -122,7 +121,7 @@ const image3 = [
 
     <View>
 
-      {album!=null||album!=undefined? Object.entries(album).map(([key,value],i)=>{
+      {album!=undefined||album!={}||album!=null?Object.entries(album).map(([key,value],i)=>{
                      return ( <View style={styles.box} key={`Image${i}`}>
                         <Text style={styles.topic}>{key}</Text>
                         <SliderBox
