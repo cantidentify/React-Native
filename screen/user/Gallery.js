@@ -87,9 +87,11 @@ const image3 = [
 
 
 
+
     return(
 
       
+
 
   <SafeAreaView style={styles.container}>
 
@@ -121,6 +123,7 @@ const image3 = [
 
     <View>
 
+
       {album!=undefined||album!={}||album!=null?Object.entries(album).map(([key,value],i)=>{
                      return ( <View style={styles.box} key={`Image${i}`}>
                         <Text style={styles.topic}>{key}</Text>
@@ -146,6 +149,40 @@ const image3 = [
   
 
 
+
+
+      <View style={styles.box}>
+        <Text style={styles.topic}>กิจกรรมต่างๆ</Text>
+        <SliderBox
+          images={image1}
+          onCurrentImagePressed={() => navigation.navigate('SubGallery')}
+          autoplay
+          circleLoop
+          sliderBoxHeight={200}
+          dotColor={'orange'}
+          ImageComponentStyle={{borderRadius: 15, width: '93%', marginTop: 5,}}
+        />
+        <View style={styles.SpaceBox}>
+          
+        </View>
+      </View>
+      <View style={styles.box}>
+        <Text style={styles.topic}>สถานที่ในวัด</Text>
+        <SliderBox
+          images={image2}
+          onCurrentImagePressed={index =>
+            pressLink({index})
+          }
+          autoplay
+          circleLoop
+          sliderBoxHeight={200}
+          dotColor={'orange'}
+          ImageComponentStyle={{borderRadius: 15, width: '93%', marginTop: 5,}}
+        />
+        <View style={styles.SpaceBox}>
+          
+        </View>
+      </View>
 
       <View style={styles.box}>
         <Text style={styles.topic}>26 ก.พ. 64 วันมาฆบูชา</Text>
