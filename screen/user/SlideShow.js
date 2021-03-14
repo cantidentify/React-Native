@@ -13,7 +13,9 @@ const imageSource = [
   require('../../asset/map/location4.jpg'),
 ]
 
+
 const slideShow = () =>{
+
 
 
   return(

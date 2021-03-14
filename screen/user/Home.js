@@ -86,6 +86,7 @@ const Home = ({navigation}) => {
             <FontAwesomeIcon icon={faSign} color="#f2a154" size={30} style={{marginHorizontal:10}}/>
           <Text style={{fontFamily:'Sarabun_400Regular',fontSize:20}}> ประกาศ </Text>
 
+
           </View>
         </View>
 
@@ -162,6 +163,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 200,
     backgroundColor: 'white',
+    paddingBottom:20
   },
   textCover:{
     marginLeft:20,
