@@ -3,7 +3,9 @@ import {View, Text, SafeAreaView, StyleSheet, Button, TouchableOpacity, Image,Li
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faPhone,facboo } from '@fortawesome/free-solid-svg-icons'
 import {faFacebook} from '@fortawesome/free-brands-svg-icons'
-import { useFonts, Prompt_100Thin } from '@expo-google-fonts/prompt';
+
+import { useFonts, Kanit_100Thin,Kanit_500Medium } from '@expo-google-fonts/kanit';
+import { Sarabun_100Thin,Sarabun_500Medium ,Sarabun_400Regular} from '@expo-google-fonts/sarabun';
 
 const Seperator = () => <View style={styles.seperator} />;
 
@@ -11,8 +13,9 @@ const Info = ({navigation}) => {
 
   const [count,setcount] = useState(0)
   const [showcontact ,setshowcontact] = useState(false)
+
   let [fontsLoaded] = useFonts({
-    Prompt_100Thin,
+    Kanit_100Thin,Kanit_500Medium,Sarabun_100Thin,Sarabun_500Medium,Sarabun_400Regular
   });
 
   function openadmin(){
@@ -106,7 +109,7 @@ const Info = ({navigation}) => {
           <Seperator/>
           <View style={{alignItems:'center',marginTop:20}}>
           <TouchableOpacity onPress={()=>{setshowcontact(true)}} style={{backgroundColor:'#fed049',padding:10,borderRadius:10}}>
-            <Text style={{fontSize:18 , color:'#282846'}}>ข้อตกลงการใช้งาน</Text>
+            <Text style={{fontSize:18 , color:'#282846',fontFamily:'Sarabun_500Medium'}}>ข้อตกลงการใช้งาน</Text>
           </TouchableOpacity>
       
           </View>
@@ -129,31 +132,31 @@ const Info = ({navigation}) => {
             onPressOut={() => {setshowcontact(false)}}
           >
             <View style={{alignItems:'flex-start'}}>
-            <Text style={{fontSize:18}}>
+            <Text style={{fontSize:18},styles.text}>
          * Application นี้เป็นส่วนหนึ่งของรายวิชา ITE-439 โดยมีอาจารย์ผู้สอนคือ อาจารย์ อมรพันธ์ ชมกลิ่น 
 
             </Text>
-            <Text style={{fontSize:18}}>
+            <Text style={{fontSize:18},styles.text}>
         
          * กรรมสิทธิ์ของ Application ทุกอย่างตกเป็นของวัด เพียงแต่ Source Code สามารถนำไปดัดแปลงได้ แต่หากต้องการนำ Application นี้ไปใช้งานต่อ จำเป็นต้องของอนุญาตจากทางวัดก่อน (ไม่รวมฐานข้อมูล และ เบื้องหลัง) 
         
             </Text>
-            <Text style={{fontSize:18}}>
+            <Text style={{fontSize:18},styles.text}>
         
 
             * Application นี้สามารถนำไปใช้ในการศึกษาได้ โดยไม่จำเป็นต้องขออนุญาต
             </Text>
-            <Text style={{fontSize:18}}>
+            <Text style={{fontSize:18},styles.text}>
 
             * Application นี้สามารถนำไปใช้ในเชิงการศึกษาได้ โดยไม่จำเป็นต้องขออนุญาต
             </Text>
  
             <View style={styles.liner}></View>
             <Text style={{marginTop:10}}> จัดทำโดย </Text>
-            <Text> นายอภินันท์ ติงหงะ</Text>
-            <Text> นายอธิป หยงสตาร์ </Text>
-            <Text> นายพงศ์พิสุทธิ์ มีมุข </Text>
-            <Text> นายมาวิน หาญสกุลวัฒน์ </Text>
+            <Text style={styles.text}> นายอภินันท์ ติงหงะ</Text>
+            <Text  style={styles.text}> นายอธิป หยงสตาร์ </Text>
+            <Text  style={styles.text}> นายพงศ์พิสุทธิ์ มีมุข </Text>
+            <Text  style={styles.text}> นายมาวิน หาญสกุลวัฒน์ </Text>
 
 
             </View>
@@ -223,7 +226,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 26,
     opacity:0.6,
-    fontWeight:'bold',
+    fontFamily:'Sarabun_500Medium',
     fontSize:14,
     color:'black'
   },
@@ -243,7 +246,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 26,
     opacity:0.6,
-    fontWeight:'bold',
+    fontFamily:'Sarabun_500Medium',
     fontSize:14,
     color:'black'
   },
@@ -270,8 +273,7 @@ const styles = StyleSheet.create({
   contactHeader:{
     fontSize:20,
     textAlign:'center',
-    opacity:0.6,
-    fontWeight:'bold'
+    fontFamily:'Sarabun_500Medium'
   },
   centeredView: {
     flex: 1,
@@ -293,5 +295,9 @@ const styles = StyleSheet.create({
       width: 0,
       height: 2
     },
+  
+},
+text:{
+  fontFamily:'Sarabun_400Regular'
 }
 });

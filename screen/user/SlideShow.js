@@ -5,32 +5,29 @@ import { SliderBox } from "react-native-image-slider-box";
 
 
 const imageSource = [
-  "https://source.unsplash.com/1024x768/?temple",
-  "https://source.unsplash.com/1024x768/?water",
-  "https://source.unsplash.com/1024x768/?nature",
-  "https://source.unsplash.com/1024x768/?house"
-]
-
-const imageLink = [
-  "https://source.unsplash.com/1024x768/?nature",
-  "https://source.unsplash.com/1024x768/?water",
-  "https://source.unsplash.com/1024x768/?nature",
-  "https://source.unsplash.com/1024x768/?house"
+  require('../../asset/map/location11.jpg'),
+  require('../../asset/map/location13.jpg'),
+  require('../../asset/map/location9.jpg'),
+  require('../../asset/map/location8.jpg'),
+  require('../../asset/map/location5.jpg'),
+  require('../../asset/map/location4.jpg'),
 ]
 
 const slideShow = () =>{
+
+
   return(
     <View>
         <SliderBox
           images={imageSource}
-          onCurrentImagePressed={index =>
-            pressLink(alert(index))
-          }
           autoplay
           circleLoop
           sliderBoxHeight={150}
-          dotColor={'orange'}
-          ImageComponentStyle={{borderRadius: 15, width: '93%', marginTop: 5}}
+          dotColor={'transparent'}
+          dotStyle={{
+            width: 0,
+            height: 0
+          }}
         />
       </View>
   )

@@ -1,4 +1,4 @@
-import React from 'react';
+import React ,{useEffect,useState}from 'react';
 import {
   View,
   Text,
@@ -7,39 +7,53 @@ import {
   Image,
   Button,
   TouchableOpacity,
+  ScrollView
 } from 'react-native';
 
 import slideShow from './SlideShow';
-
+import { useFonts, Kanit_100Thin,Kanit_500Medium } from '@expo-google-fonts/kanit';
+import { Sarabun_500Medium,Sarabun_400Regular } from '@expo-google-fonts/sarabun';
+import { Card, Title, Paragraph ,Badge } from 'react-native-paper';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
+import { faSign } from '@fortawesome/free-solid-svg-icons'
+import axios from 'axios';
 
 const Home = ({navigation}) => {
+
+  let [news,setnews] = useState([]);
+
+  useEffect( ()=>{
+
+    async function api(){
+      let res = await axios.get('https://watthepleela.herokuapp.com/news')
+      setnews(res.data.results)
+
+    }
+    api()
+    
+
+  },[news])
+  
+  let [fontsLoaded] = useFonts({
+    Kanit_100Thin,Kanit_500Medium,Sarabun_500Medium,Sarabun_400Regular
+  });
+
+
+  function dateMod(date){
+    let x = date.split("T")
+    return x[0]
+  }
+
+
+
   return (
     <SafeAreaView style={styles.container}>
-      <View>
-        {/* <View style={styles.header}>
-          <View style={{}}>
-            <Text style={{color: 'black'}}>Home</Text>
-          </View>
-
-          <View style={{position: 'absolute', marginLeft: '20%'}}>
-            <Text style={styles.headerfont}>วัดเทพลีลาพระอารามหลวง</Text>
-          </View>
-        </View> */}
-
-
-
-        <View style={styles.box1}>
-          <TouchableOpacity
-            style={{width:"100%",height:'100%'}}
-            onPress={() => navigation.navigate('Gallerry')}>
-              <View>
-              <Text
-            style={{textAlign: 'center', fontWeight: 'bold', color: 'white'}}>
-            Gallerry
-          </Text>
-              </View>
-          </TouchableOpacity>
-        </View>
+       <ScrollView style={{backgroundColor:'#f2a154'}}>
+       
+       <View style={{backgroundColor:'#e7e6e1'}}>
+       {slideShow()}
+       </View>
+      
 
         <View style={styles.box2}>
           <TouchableOpacity
@@ -66,16 +80,39 @@ const Home = ({navigation}) => {
             </View>
           </TouchableOpacity>
         </View>
+        <View style={{backgroundColor:'#314e52',width:'100%',height:80}}>
+          <View style={{justifyContent:'center',alignItems:'center',alignSelf:'center',
+          marginTop:10,backgroundColor:'#f7f6e7',width:'80%',padding:10,borderRadius:15,flexDirection:'row'}}>
+            <FontAwesomeIcon icon={faSign} color="#f2a154" size={30} style={{marginHorizontal:10}}/>
+          <Text style={{fontFamily:'Sarabun_400Regular',fontSize:20}}> ประกาศ </Text>
 
-        <View style={styles.box3}>
-          <View style={styles.textCover}>
-            <Text style={styles.coverTextStyle}>กิจกรรม และข่าวสารต่างๆ</Text>
-          </View>
-          <View style={styles.textBackground}>
-          {slideShow()}
           </View>
         </View>
-      </View>
+
+    
+
+          <View style={{justifyContent:'center' , alignItems:'center'}}>
+          {news.map((i,v)=>(
+
+             <Card key={`Card-${v}`} style={{width:'80%',marginVertical:15}}>
+             <Card.Content>
+               <Title style={styles.NewsHeadaer}>{i.Text}</Title>
+               <Paragraph  style={styles.NewsText} >{i.Detail}</Paragraph>
+               <View style={{backgroundColor:'#5b5b5b',padding:5,borderRadius:10,marginTop:20,flexDirection:'row'}}>
+                 <View></View>
+               <Paragraph style={styles.NewsText,{fontSize:12,color:'white'}}>ประกาศวันที่ : {dateMod(i.Date)} โดย {i.Post_by}</Paragraph>
+               <Badge style={{alignSelf:'flex-end',marginLeft:30}}>{i.id}</Badge>
+               </View>
+               
+               
+             </Card.Content>
+           </Card>
+
+            
+
+          ))}
+    </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -85,7 +122,7 @@ export default Home;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f6f6f6',
+    backgroundColor: '#f0f0f0',
   },
   header: {
     alignItems: 'center',
@@ -111,13 +148,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: '100%',
     height: 170,
-    backgroundColor: '#e27802',
+    backgroundColor: '#f0a500',
   },
   box2: {
     padding: 15,
     justifyContent: 'space-around',
-    backgroundColor: 'white',
-    marginTop: 20,
+    backgroundColor: '#e6d5b8',
     flexDirection: 'row',
   },
   box3: {
@@ -156,7 +192,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 15,
     opacity:0.6,
-    fontWeight:'bold'
+    fontFamily:'Sarabun_400Regular',
+    fontSize:15
+    ,color:'#e6d5b8'
   },
   buttom_navigator: {
     backgroundColor: 'white',
@@ -177,11 +215,20 @@ const styles = StyleSheet.create({
     shadowOffset: {height: 1, width: 1}, // IOS
     shadowOpacity: 1, // IOS
     shadowRadius: 1, //IOS
-    backgroundColor: '#fff',
+    backgroundColor: '#4a3933',
     elevation: 0.9, // Android
     height: 110,
     width: 130,
     borderRadius: 10,
   },
+  NewsText:{
+    fontFamily:'Sarabun_400Regular',
+    fontSize:16,
+  },
+  NewsHeadaer:{
+    fontFamily:'Sarabun_400Regular',
+    fontSize:22,
+  }
+
 
 });

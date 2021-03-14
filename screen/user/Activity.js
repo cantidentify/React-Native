@@ -12,11 +12,16 @@ import {
 } from 'react-native';
 
 import { Avatar, Button, Card, Title, Paragraph , ActivityIndicator } from 'react-native-paper';
+import { useFonts, Kanit_100Thin,Kanit_500Medium } from '@expo-google-fonts/kanit';
+import { Sarabun_100Thin,Sarabun_400Regular } from '@expo-google-fonts/sarabun';
 
 export default function App({ route }){
 
   let [loading,setloading] = useState(true)
   let [event,setevent] = useState([])
+  let [fontsLoaded] = useFonts({
+    Kanit_100Thin,Kanit_500Medium,Sarabun_400Regular
+  });
  
 
 
@@ -82,8 +87,9 @@ const styles = StyleSheet.create({
     marginTop:-13,
   },
   header:{
-    fontSize: 17,
-    fontWeight: 'bold',
+    fontSize: 15,
+    fontFamily:'Sarabun_400Regular',
+    padding:10,
     lineHeight: 25,
     color:'#292929'
   }
