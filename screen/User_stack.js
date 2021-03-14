@@ -1,12 +1,14 @@
 import React from "react";
 
-import { Button, Image, StyleSheet } from "react-native";
+import { Button, Image, StyleSheet ,TouchableOpacity} from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import {
   createStackNavigator,
   CardStyleInterpolators,
 } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
+import { faHome } from '@fortawesome/free-solid-svg-icons'
 
 import Home from "./user/Home";
 import Location from "./user/Location";
@@ -83,7 +85,7 @@ const ButtomTab = () => (
   </Tab.Navigator>
 );
 
-const HomeStackScreen = () => (
+const HomeStackScreen = ({navigation}) => (
   <Stack.Navigator
     screenOptions={{
       cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
@@ -102,7 +104,8 @@ const HomeStackScreen = () => (
       name="Gallerry"
       component={GalleryScreen}
       options={{
-        headerTitle: "Gallerry",
+        headerTitle: "คลังภาพ",
+        headerShown:false,
         headerTitleStyle: { alignSelf: "center" },
       }}
     />
@@ -112,7 +115,7 @@ const HomeStackScreen = () => (
       component={Info}
       options={{
         headerTitle: "Information",
-        headerTitleStyle: { alignSelf: "center" },
+
       }}
     />
 
@@ -135,7 +138,9 @@ const LocationStackScreen = ({ navigation }) => (
         title: "แผนที่ภายในวัด",
         headerTitleStyle: { alignSelf: "center" },
         headerLeft: () => (
-          <Button onPress={() => navigation.navigate("Home")} title="Home" />
+          <TouchableOpacity onPress={()=>navigation.navigate("Home")}>
+          <FontAwesomeIcon style={{marginLeft:10}} icon={faHome} size={30} color='orange' /> 
+      </TouchableOpacity>
         ),
         headerTitleContainerStyle: {
           left: 0, // THIS RIGHT HERE
@@ -159,7 +164,9 @@ const ActivityStackScreen = ({ navigation }) => (
         title: "ข่าวสารและกิจกรรมของวัด",
         headerTitleStyle: { alignSelf: "center" },
         headerLeft: () => (
-          <Button onPress={() => navigation.navigate("Home")} title="Home" />
+          <TouchableOpacity onPress={()=>navigation.navigate("Home")}>
+          <FontAwesomeIcon style={{marginLeft:10}} icon={faHome} size={30} color='orange' /> 
+      </TouchableOpacity>
         ),
         headerTitleContainerStyle: {
           left: 5, // THIS RIGHT HERE
@@ -180,11 +187,8 @@ const GalleryScreen = ({ navigation }) => (
       component={Gallerry}
       initialParams={{id:0}}
       options={{
-        title: "Gallery",
+        title: "คลังภาพ",
         headerTitleStyle: { alignSelf: "center" },
-        headerLeft: () => (
-          <Button onPress={() => navigation.navigate("Home")} title="Home" />
-        ),
         headerTitleContainerStyle: {
           left: 5, // THIS RIGHT HERE
         },
@@ -196,10 +200,13 @@ const GalleryScreen = ({ navigation }) => (
       component={SubGallery}
       initialParams={{id:0}}
       options={{
+        headerShown:false,
         title: "SubGallery",
         headerTitleStyle: { alignSelf: "center" },
         headerLeft: () => (
-          <Button onPress={() => navigation.navigate("Home")} title="Home" />
+          <TouchableOpacity onPress={()=>navigation.navigate("Home")}>
+          <FontAwesomeIcon style={{marginLeft:10}} icon={faHome} size={30} color='orange' /> 
+      </TouchableOpacity>
         ),
         headerTitleContainerStyle: {
           left: 5, // THIS RIGHT HERE
@@ -211,7 +218,7 @@ const GalleryScreen = ({ navigation }) => (
 );
 
 
-function OtherMenuScreen() {
+function OtherMenuScreen({navigation}) {
   
   return( <Stack.Navigator
     screenOptions={{
@@ -225,6 +232,11 @@ function OtherMenuScreen() {
       options={{
         title: "เมนูอื่นๆ",
         headerTitleStyle: { alignSelf: "center" },
+        headerLeft: () => (
+          <TouchableOpacity onPress={()=>navigation.navigate("Home")}>
+          <FontAwesomeIcon style={{marginLeft:10}} icon={faHome} size={30} color='orange' /> 
+      </TouchableOpacity>
+        ),
 
         headerTitleContainerStyle: {
           left: 0, // THIS RIGHT HERE
@@ -233,18 +245,17 @@ function OtherMenuScreen() {
     />
     <Stack.Screen
       name="Gallerry"
-      component={GalleryScreen}
+      component={Gallerry}
       options={{
-        headerTitle: "Gallerry",
-        headerTitleStyle: { alignSelf: "center" },
+        headerTitle: "คลังภาพ",
       }}
     />
     <Stack.Screen
-      name="ประวัติความเป็นมา"
+      name="Info"
       component={Info}
       options={{
-        headerTitle: "Gallerry",
-        headerTitleStyle: { alignSelf: "center" },
+        headerTitle: "ประวัติความเป็นมา",
+        
       }}
     />
 

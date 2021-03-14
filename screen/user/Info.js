@@ -1,8 +1,15 @@
 import React from "react";
 import { View, Text, SafeAreaView, StyleSheet, ScrollView } from "react-native";
 import { Avatar, Button, Card, Title, Paragraph } from "react-native-paper";
+import { useFonts, Kanit_100Thin,Kanit_500Medium } from '@expo-google-fonts/kanit';
+import { Sarabun_100Thin } from '@expo-google-fonts/sarabun';
 
 const Info = () => {
+
+  let [fontsLoaded] = useFonts({
+    Kanit_100Thin,Kanit_500Medium,Sarabun_100Thin
+  });
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
@@ -10,7 +17,6 @@ const Info = () => {
 
         <View style={styles.box3}>
           <Text style={styles.topBox}>ประวัติความเป็นมา</Text>
-          <Text style={styles.detailText}></Text>
           <Card>
             <Card.Content>
               <Card.Cover source={{ uri: "https://i.ytimg.com/vi/3AjXCjXQ8ns/maxresdefault.jpg" }} />
@@ -46,15 +52,17 @@ const styles = StyleSheet.create({
     fontSize:16,
     lineHeight: 30,
     padding:15,
+    fontFamily:'Sarabun_100Thin'
     
   },
   topBox: {
     backgroundColor: "white",
     color: "black",
     fontSize: 21,
-    fontWeight: "bold",
-    marginBottom: 14,
+    fontFamily:'Kanit_500Medium',
+    padding:10,
     marginTop:6
+    ,marginLeft:20
   },
   detailText: {
     fontSize: 16,

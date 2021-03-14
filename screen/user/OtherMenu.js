@@ -1,12 +1,19 @@
 import React,{useState} from 'react';
-import {View, Text, SafeAreaView, StyleSheet, Button, TouchableOpacity, Image} from 'react-native';
-
+import {View, Text, SafeAreaView, StyleSheet, Button, TouchableOpacity, Image,Linking,Modal,ScrollView} from 'react-native';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
+import { faPhone,facboo } from '@fortawesome/free-solid-svg-icons'
+import {faFacebook} from '@fortawesome/free-brands-svg-icons'
+import { useFonts, Prompt_100Thin } from '@expo-google-fonts/prompt';
 
 const Seperator = () => <View style={styles.seperator} />;
 
 const Info = ({navigation}) => {
 
   const [count,setcount] = useState(0)
+  const [showcontact ,setshowcontact] = useState(false)
+  let [fontsLoaded] = useFonts({
+    Prompt_100Thin,
+  });
 
   function openadmin(){
     setcount(count+1);
@@ -16,6 +23,16 @@ const Info = ({navigation}) => {
 
     }
     
+  }
+
+  function  havefacebookApp(){
+    Linking.canOpenURL("fb://page/346864465383304").then(supported => {
+    if (supported) {
+      return Linking.openURL("fb://page/346864465383304");
+    } else {
+      return Linking.openURL("https://www.facebook.com/watthepleela");
+    }
+  })
   }
 
   return (
@@ -60,7 +77,95 @@ const Info = ({navigation}) => {
           </TouchableOpacity>
 
         <View style={styles.contact}>
-          <Text style={styles.contactHeader}>ช่องทางติดต่อ</Text>
+          <Text style={styles.contactHeader}>ข้อมูลเพิ่มเติม</Text>
+
+         
+          <View style={{justifyContent:'center',alignItems:'center',marginVertical:20}}> 
+
+         
+
+          <View style={{flexDirection:'row',marginVertical:5}}>
+          <Text style={{marginHorizontal:20,fontSize:20}}>โทร             : 02-3191725</Text>
+          <TouchableOpacity onPress={()=>{Linking.openURL('tel:023191725');}}>
+            <FontAwesomeIcon icon={faPhone} size={25} color='green'/>
+          </TouchableOpacity>
+
+          </View>
+
+          <View style={{flexDirection:'row'}}>
+          <Text style={{marginHorizontal:20,fontSize:20}}>Facebook   : watthepleela</Text>
+          <TouchableOpacity onPress={()=>{havefacebookApp()}}>
+            <FontAwesomeIcon icon={faFacebook} size={25} color='#3b5998'/>
+          </TouchableOpacity>
+         
+          </View>
+
+       
+          </View>
+
+          <Seperator/>
+          <View style={{alignItems:'center',marginTop:20}}>
+          <TouchableOpacity onPress={()=>{setshowcontact(true)}} style={{backgroundColor:'#fed049',padding:10,borderRadius:10}}>
+            <Text style={{fontSize:18 , color:'#282846'}}>ข้อตกลงการใช้งาน</Text>
+          </TouchableOpacity>
+      
+          </View>
+
+
+          <Modal
+        animationType="slide"
+        transparent={true}
+        visible={showcontact}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          setshowcontact(false);
+        }}
+      >
+      <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+
+          <TouchableOpacity 
+            activeOpacity={1} 
+            onPressOut={() => {setshowcontact(false)}}
+          >
+            <View style={{alignItems:'flex-start'}}>
+            <Text style={{fontSize:18}}>
+         * Application นี้เป็นส่วนหนึ่งของรายวิชา ITE-439 โดยมีอาจารย์ผู้สอนคือ อาจารย์ อมรพันธ์ ชมกลิ่น 
+
+            </Text>
+            <Text style={{fontSize:18}}>
+        
+         * กรรมสิทธิ์ของ Application ทุกอย่างตกเป็นของวัด เพียงแต่ Source Code สามารถนำไปดัดแปลงได้ แต่หากต้องการนำ Application นี้ไปใช้งานต่อ จำเป็นต้องของอนุญาตจากทางวัดก่อน (ไม่รวมฐานข้อมูล และ เบื้องหลัง) 
+        
+            </Text>
+            <Text style={{fontSize:18}}>
+        
+
+            * Application นี้สามารถนำไปใช้ในการศึกษาได้ โดยไม่จำเป็นต้องขออนุญาต
+            </Text>
+            <Text style={{fontSize:18}}>
+
+            * Application นี้สามารถนำไปใช้ในเชิงการศึกษาได้ โดยไม่จำเป็นต้องขออนุญาต
+            </Text>
+ 
+            <View style={styles.liner}></View>
+            <Text style={{marginTop:10}}> จัดทำโดย </Text>
+            <Text> นายอภินันท์ ติงหงะ</Text>
+            <Text> นายอธิป หยงสตาร์ </Text>
+            <Text> นายพงศ์พิสุทธิ์ มีมุข </Text>
+            <Text> นายมาวิน หาญสกุลวัฒน์ </Text>
+
+
+            </View>
+ 
+          </TouchableOpacity>  
+
+          </View>
+        </View>
+      </Modal>
+
+         
+    
         </View>
 
         {/* <Button
@@ -150,6 +255,15 @@ const styles = StyleSheet.create({
     opacity:0.13,
     borderWidth:1.5
   },
+  liner:{
+    width:'100%',
+    marginTop:10,
+    marginHorizontal:0,
+    borderBottomColor: 'grey',
+    borderBottomWidth: 1,
+    opacity:0.13,
+    borderWidth:2
+  },
   contact:{
     marginVertical:5
   },
@@ -158,5 +272,26 @@ const styles = StyleSheet.create({
     textAlign:'center',
     opacity:0.6,
     fontWeight:'bold'
-  }
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderWidth:2,
+    borderColor:'#dddddd',
+    borderRadius: 20,
+    width:'80%',
+    padding: 30,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+}
 });

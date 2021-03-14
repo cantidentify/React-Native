@@ -1144,6 +1144,26 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
+"@expo-google-fonts/inter@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@expo-google-fonts/inter/-/inter-0.1.0.tgz#399f068437824fcbf6aa3da5fcf490dba2af85a3"
+  integrity sha512-Y6GCqsUX6JwexQ2wmBkMiJBY6M2GpNQRTczzIGbBGhXWQxqGmP5awRcf0ZJV+OlLeJcKAzas/TW45ZLdpG3yzA==
+
+"@expo-google-fonts/kanit@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@expo-google-fonts/kanit/-/kanit-0.1.0.tgz#3638937a1ff0ce0fd2371be13361d574bfff82a3"
+  integrity sha512-8aPdsCn+S5sGOimVZLLlFuuxdZ7ydkv12gw0+K98PHQRKMhkO+TFVaR6E1uH70a6MFG5toHN4h+SAJBsV2iYVQ==
+
+"@expo-google-fonts/prompt@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@expo-google-fonts/prompt/-/prompt-0.1.0.tgz#84e9c5a1dca1785d20e04ee401ccc7bcec3db9d3"
+  integrity sha512-vsS0HZB3jIls2lsEYSriAOry+lsvvcRDCistC7XS9IsppkYrlYhsy5BHa6cx8dN4t2sZFUzvQTWCW0MwCQOfoQ==
+
+"@expo-google-fonts/sarabun@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@expo-google-fonts/sarabun/-/sarabun-0.1.0.tgz#b79170adeae574008eef18ce6aa896399d60ef41"
+  integrity sha512-K+jYUMu5fgkZnrytDMGXOMj+XtQn7/eUb6plMItYia9VesCOcQmoO0/usnrAXGwhKWs25VnZXMotaPhKPH+dfA==
+
 "@expo/config-plugins@1.0.21":
   version "1.0.21"
   resolved "https://registry.yarnpkg.com/@expo/config-plugins/-/config-plugins-1.0.21.tgz#5a6f5c818dd7bccc2f3e381cbf8b0657c38bb302"
@@ -1307,6 +1327,13 @@
   version "1.2.34"
   resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-svg-core/-/fontawesome-svg-core-1.2.34.tgz#1d1a7c92537cbc2b8a83eef6b6d824b4b5b46b26"
   integrity sha512-0KNN0nc5eIzaJxlv43QcDmTkDY1CqeN6J7OCGSs+fwGPdtv0yOQqRjieopBCmw+yd7uD3N2HeNL3Zm5isDleLg==
+  dependencies:
+    "@fortawesome/fontawesome-common-types" "^0.2.34"
+
+"@fortawesome/free-brands-svg-icons@^5.15.2":
+  version "5.15.2"
+  resolved "https://registry.yarnpkg.com/@fortawesome/free-brands-svg-icons/-/free-brands-svg-icons-5.15.2.tgz#d74e2540b5552b915d6bef719f17e361b70a8d65"
+  integrity sha512-YPlVjE1cEO+OJ9I9ay3TQ3I88+XkxMTYwnnddqAboxLhPNGncsHV0DjWOVLCyuAY66yPfyndWwVn4v7vuqsO1g==
   dependencies:
     "@fortawesome/fontawesome-common-types" "^0.2.34"
 

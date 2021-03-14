@@ -23,6 +23,7 @@ export default function App(){
 
     let [gallery,setgallery] = useState([])
     let [album,setalbum] = useState({})
+    let [loading,setloading] = useState(true)
 
     useFocusEffect(
       React.useCallback(() => {
@@ -36,10 +37,8 @@ export default function App(){
             if(isActive){
               setgallery(res.data.results)
               setalbum(await _.chain(gallery).groupBy('Album').mapValues((x,a)=>x.map((i)=>i.Img_uri)).value())
-              
 
-              
-       
+  
             }
   
           }
@@ -51,14 +50,6 @@ export default function App(){
       }, [gallery])
     );
 
-
-    function Mapimage(){
-
-    }
-
-  
-
-    
 
 
 const image1 = [
@@ -95,10 +86,97 @@ const image3 = [
 
   <SafeAreaView style={styles.container}>
 
+
+{Object.keys(album).length>0?
+
+<ScrollView>
+
+<View>
+
+
+  {album!=undefined||album!={}||album!=null?Object.entries(album).map(([key,value],i)=>{
+                  
+                 
+                 return ( <View style={styles.box} key={`Image${i}`}>
+                    <Text style={styles.topic}>{key}</Text>
+                    <SliderBox
+                      images={value}
+                      onCurrentImagePressed={index =>
+                        pressLink({index})
+                      }
+                      autoplay
+                      circleLoop
+                      sliderBoxHeight={200}
+                      dotColor={'orange'}
+                      ImageComponentStyle={{borderRadius: 15, width: '93%', marginTop: 5,}}
+                    />
+                    <View style={styles.SpaceBox}>
+                      
+                    </View>
+                  </View>)
+            
+          })
+          :null}
+
+
+  <View style={styles.box}>
+    <Text style={styles.topic}>กิจกรรมต่างๆ</Text>
+    <SliderBox
+      images={image1}
+      onCurrentImagePressed={() => navigation.navigate('SubGallery')}
+      autoplay
+      circleLoop
+      sliderBoxHeight={200}
+      dotColor={'orange'}
+      ImageComponentStyle={{borderRadius: 15, width: '93%', marginTop: 5,}}
+    />
+    <View style={styles.SpaceBox}>
+      
+    </View>
+  </View>
+  <View style={styles.box}>
+    <Text style={styles.topic}>สถานที่ในวัด</Text>
+    <SliderBox
+      images={image2}
+      onCurrentImagePressed={index =>
+        pressLink({index})
+      }
+      autoplay
+      circleLoop
+      sliderBoxHeight={200}
+      dotColor={'orange'}
+      ImageComponentStyle={{borderRadius: 15, width: '93%', marginTop: 5,}}
+    />
+    <View style={styles.SpaceBox}>
+      
+    </View>
+  </View>
+
+  <View style={styles.box}>
+    <Text style={styles.topic}>26 ก.พ. 64 วันมาฆบูชา</Text>
+    <SliderBox
+      images={image3}
+      onCurrentImagePressed={index =>
+        pressLink({index})
+      }
+      autoplay
+      circleLoop
+      sliderBoxHeight={200}
+      dotColor={'orange'}
+      ImageComponentStyle={{borderRadius: 15, width: '93%', marginTop: 5,}}
+    />
+    <View style={styles.SpaceBox}>
+      
+    </View>
+  </View>
+</View>
+</ScrollView>
+
+:
 <Modal
         animationType="slide"
         transparent={true}
-        visible={album=={}?true:false}
+        visible={Object.keys(album).length>0?false:true}
         onRequestClose={() => {
           Alert.alert("Modal has been closed.");
           setModalVisible(!modalVisible);
@@ -109,100 +187,13 @@ const image3 = [
           <ActivityIndicator size="large" color="#da723c"/>
           </View>
         </View>
-      </Modal>
+      </Modal>}
+
 
       
   
 
-    <ScrollView>
-
-    <Text style={styles.title}>แกลลอรี่</Text>
-
-
-
-
-    <View>
-
-
-      {album!=undefined||album!={}||album!=null?Object.entries(album).map(([key,value],i)=>{
-                     return ( <View style={styles.box} key={`Image${i}`}>
-                        <Text style={styles.topic}>{key}</Text>
-                        <SliderBox
-                          images={value}
-                          onCurrentImagePressed={index =>
-                            pressLink({index})
-                          }
-                          autoplay
-                          circleLoop
-                          sliderBoxHeight={200}
-                          dotColor={'orange'}
-                          ImageComponentStyle={{borderRadius: 15, width: '93%', marginTop: 5,}}
-                        />
-                        <View style={styles.SpaceBox}>
-                          
-                        </View>
-                      </View>)
-                
-              })
-              :null}
-
-  
-
-
-
-
-      <View style={styles.box}>
-        <Text style={styles.topic}>กิจกรรมต่างๆ</Text>
-        <SliderBox
-          images={image1}
-          onCurrentImagePressed={() => navigation.navigate('SubGallery')}
-          autoplay
-          circleLoop
-          sliderBoxHeight={200}
-          dotColor={'orange'}
-          ImageComponentStyle={{borderRadius: 15, width: '93%', marginTop: 5,}}
-        />
-        <View style={styles.SpaceBox}>
-          
-        </View>
-      </View>
-      <View style={styles.box}>
-        <Text style={styles.topic}>สถานที่ในวัด</Text>
-        <SliderBox
-          images={image2}
-          onCurrentImagePressed={index =>
-            pressLink({index})
-          }
-          autoplay
-          circleLoop
-          sliderBoxHeight={200}
-          dotColor={'orange'}
-          ImageComponentStyle={{borderRadius: 15, width: '93%', marginTop: 5,}}
-        />
-        <View style={styles.SpaceBox}>
-          
-        </View>
-      </View>
-
-      <View style={styles.box}>
-        <Text style={styles.topic}>26 ก.พ. 64 วันมาฆบูชา</Text>
-        <SliderBox
-          images={image3}
-          onCurrentImagePressed={index =>
-            pressLink({index})
-          }
-          autoplay
-          circleLoop
-          sliderBoxHeight={200}
-          dotColor={'orange'}
-          ImageComponentStyle={{borderRadius: 15, width: '93%', marginTop: 5,}}
-        />
-        <View style={styles.SpaceBox}>
-          
-        </View>
-      </View>
-    </View>
-    </ScrollView>
+ 
   </SafeAreaView>)
 
 }

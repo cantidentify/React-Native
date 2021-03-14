@@ -8,8 +8,18 @@ import {
   Image,
   ScrollView
 } from 'react-native';
+import { useFonts, Kanit_100Thin,Kanit_500Medium } from '@expo-google-fonts/kanit';
+import { Sarabun_100Thin,Sarabun_500Medium,Sarabun_400Regular } from '@expo-google-fonts/sarabun';
 
-const App = () => (
+
+
+export default function App() {
+
+  let [fontsLoaded] = useFonts({
+    Sarabun_100Thin,Kanit_100Thin,Sarabun_400Regular,Sarabun_500Medium
+  });
+
+  return(
   <SafeAreaView style={styles.container}>
     <ScrollView>
       <View>
@@ -92,7 +102,8 @@ const App = () => (
       </View>
     </ScrollView>
   </SafeAreaView>
-);
+  )
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -125,33 +136,39 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     borderWidth: 1,
     borderColor: '#E5E5E5',
-    marginBottom: 10
+    marginBottom: 10,
+    padding:5
   },
   header:{
     fontSize: 17,
-    fontWeight: 'bold',
+    fontFamily:'Kanit_500Medium',
     color:'#292929',
     marginLeft: 8,
-    marginTop: 8
+    marginTop: 10,
+    marginBottom: 10
   },
   header2:{
     fontSize: 15,
-    fontWeight: 'bold',
-    color:'#343434',
+    fontFamily:'Kanit_500Medium',
+    backgroundColor:'#f4d160',
+    padding:7,
+    borderRadius:15,
+    color:'#4a3933',
     marginLeft: 8,
-    marginTop: 8,
-    marginBottom: 2
+    marginTop: 10,
+    marginBottom: 10
   },
   detailBox:{
     marginLeft: 8,
-    marginBottom: 6
+    marginBottom: 6,
+    fontFamily:'Sarabun_400Regular'
   },
   detailHeader:{
     fontSize: 14,
-    fontWeight: 'bold',
+    fontFamily:'Sarabun_500Medium',
     color:'#292929',
   }
 });
 
-export default App;
+
 
