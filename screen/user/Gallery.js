@@ -101,8 +101,6 @@ const image3 = [
                     <Text style={styles.topic}>{key}</Text>
                     <SliderBox
                       images={value}
-                      onCurrentImagePressed={() => navigation.navigate('SubGallery')}
-                      autoplay
                       circleLoop
                       sliderBoxHeight={200}
                       dotColor={'orange'}
@@ -217,6 +215,7 @@ const styles = StyleSheet.create({
     marginBottom: 0,
     backgroundColor: '#FFFFFF',
     justifyContent: 'center',
+
   },
   title: {
     fontSize: 22,
@@ -227,9 +226,16 @@ const styles = StyleSheet.create({
     color: '#41280b',
   },
   topic: {
-    fontSize: 16,
-    marginBottom: 10,
-    marginLeft: 25,
+    fontSize: 15,
+    fontFamily:'Kanit_500Medium',
+    backgroundColor:'#f4d160',
+    padding:7,
+    borderRadius:15,
+    color:'#4a3933',
+    marginLeft: 8,
+    marginTop: 10,
+    marginBottom: 10
+    
   },
   SpaceBox: {
     backgroundColor: '#F0F0F0',

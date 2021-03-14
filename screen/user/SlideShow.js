@@ -18,14 +18,12 @@ const imageLink = [
   "https://source.unsplash.com/1024x768/?house"
 ]
 
-const slideShow = () =>{
+const slideShow = ({navigation}) =>{
   return(
     <View>
         <SliderBox
           images={imageSource}
-          onCurrentImagePressed={index =>
-            pressLink(alert(index))
-          }
+          onCurrentImagePressed={() => navigation.navigate('Activity')}
           autoplay
           circleLoop
           sliderBoxHeight={150}

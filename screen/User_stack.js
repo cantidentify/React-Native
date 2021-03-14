@@ -211,6 +211,10 @@ const GalleryScreen = ({ navigation }) => (
       options={{
         title: "คลังภาพ",
         headerTitleStyle: { alignSelf: "center" },
+        headerStyle: {
+          backgroundColor: '#2a9bff',
+        },
+        headerTintColor: '#fff',
         headerTitleContainerStyle: {
           left: 5, // THIS RIGHT HERE
         },

@@ -72,7 +72,7 @@ const Home = ({navigation}) => {
             <Text style={styles.coverTextStyle}>กิจกรรม และข่าวสารต่างๆ</Text>
           </View>
           <View style={styles.textBackground}>
-          {slideShow()}
+          {slideShow({navigation})}
           </View>
         </View>
       </View>
@@ -126,6 +126,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 200,
     backgroundColor: 'white',
+    paddingBottom:20
   },
   textCover:{
     marginLeft:20,
