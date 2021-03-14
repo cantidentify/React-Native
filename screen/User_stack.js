@@ -18,7 +18,6 @@ import OtherMenu from "./user/OtherMenu";
 import Gallerry from "./user/Gallery";
 import Login from "./admin/Login"
 import Manage from "./admin/Manage"
-import SubGallery from "./user/SubGallery"
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -96,7 +95,11 @@ const HomeStackScreen = ({navigation}) => (
       component={Home}
       options={{
         headerTitle: "วัดเทพลีลาพระอารามหลวง",
-        headerTitleStyle: { alignSelf: "center" }
+        headerTitleStyle: { alignSelf: "center" },
+        headerStyle: {
+          backgroundColor: '#2a9bff',
+        },
+        headerTintColor: '#fff',
       }}
     />
 
@@ -107,6 +110,10 @@ const HomeStackScreen = ({navigation}) => (
         headerTitle: "คลังภาพ",
         headerShown:false,
         headerTitleStyle: { alignSelf: "center" },
+        headerStyle: {
+          backgroundColor: '#2a9bff',
+        },
+        headerTintColor: '#fff',
       }}
     />
 
@@ -114,8 +121,15 @@ const HomeStackScreen = ({navigation}) => (
       name="Info"
       component={Info}
       options={{
-        headerTitle: "Information",
-
+        headerTitle: "ประวัติ",
+        headerTitleStyle: { alignSelf: "center" },
+        headerStyle: {
+          backgroundColor: '#2a9bff',
+        },
+        headerTintColor: '#fff',
+        headerTitleContainerStyle: {
+          left: 0, // THIS RIGHT HERE
+        },
       }}
     />
 
@@ -137,9 +151,13 @@ const LocationStackScreen = ({ navigation }) => (
       options={{
         title: "แผนที่ภายในวัด",
         headerTitleStyle: { alignSelf: "center" },
+        headerStyle: {
+          backgroundColor: '#2a9bff',
+        },
+        headerTintColor: '#fff',
         headerLeft: () => (
           <TouchableOpacity onPress={()=>navigation.navigate("Home")}>
-          <FontAwesomeIcon style={{marginLeft:10}} icon={faHome} size={30} color='orange' /> 
+          <FontAwesomeIcon style={{marginLeft:10}} icon={faHome} size={30} color='white' /> 
       </TouchableOpacity>
         ),
         headerTitleContainerStyle: {
@@ -163,9 +181,13 @@ const ActivityStackScreen = ({ navigation }) => (
       options={{
         title: "ข่าวสารและกิจกรรมของวัด",
         headerTitleStyle: { alignSelf: "center" },
+        headerStyle: {
+          backgroundColor: '#2a9bff',
+        },
+        headerTintColor: '#fff',
         headerLeft: () => (
           <TouchableOpacity onPress={()=>navigation.navigate("Home")}>
-          <FontAwesomeIcon style={{marginLeft:10}} icon={faHome} size={30} color='orange' /> 
+          <FontAwesomeIcon style={{marginLeft:10}} icon={faHome} size={30} color='white' /> 
       </TouchableOpacity>
         ),
         headerTitleContainerStyle: {
@@ -195,25 +217,6 @@ const GalleryScreen = ({ navigation }) => (
       }}
     />
 
-<Stack.Screen
-      name="SubGallery"
-      component={SubGallery}
-      initialParams={{id:0}}
-      options={{
-        headerShown:false,
-        title: "SubGallery",
-        headerTitleStyle: { alignSelf: "center" },
-        headerLeft: () => (
-          <TouchableOpacity onPress={()=>navigation.navigate("Home")}>
-          <FontAwesomeIcon style={{marginLeft:10}} icon={faHome} size={30} color='orange' /> 
-      </TouchableOpacity>
-        ),
-        headerTitleContainerStyle: {
-          left: 5, // THIS RIGHT HERE
-        },
-      }}
-    />
-
   </Stack.Navigator>
 );
 
@@ -232,9 +235,13 @@ function OtherMenuScreen({navigation}) {
       options={{
         title: "เมนูอื่นๆ",
         headerTitleStyle: { alignSelf: "center" },
+        headerStyle: {
+          backgroundColor: '#2a9bff',
+        },
+        headerTintColor: '#fff',
         headerLeft: () => (
           <TouchableOpacity onPress={()=>navigation.navigate("Home")}>
-          <FontAwesomeIcon style={{marginLeft:10}} icon={faHome} size={30} color='orange' /> 
+          <FontAwesomeIcon style={{marginLeft:10}} icon={faHome} size={30} color='white' /> 
       </TouchableOpacity>
         ),
 
@@ -245,16 +252,17 @@ function OtherMenuScreen({navigation}) {
     />
     <Stack.Screen
       name="Gallerry"
-      component={Gallerry}
+      component={GalleryScreen}
       options={{
-        headerTitle: "คลังภาพ",
+        headerTitle: "MainGallery",
+        headerShown: false
       }}
     />
     <Stack.Screen
       name="Info"
       component={Info}
       options={{
-        headerTitle: "ประวัติความเป็นมา",
+        headerTitle: "ประวัติ",
         
       }}
     />

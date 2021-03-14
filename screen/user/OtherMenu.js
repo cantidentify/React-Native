@@ -6,7 +6,7 @@ import {faFacebook} from '@fortawesome/free-brands-svg-icons'
 import { useFonts, Prompt_100Thin } from '@expo-google-fonts/prompt';
 
 const Seperator = () => <View style={styles.seperator} />;
-
+ 
 const Info = ({navigation}) => {
 
   const [count,setcount] = useState(0)
@@ -99,6 +99,9 @@ const Info = ({navigation}) => {
           </TouchableOpacity>
          
           </View>
+          <View>
+            <Text style={{marginHorizontal:20,fontSize:18,textAlign:'center',marginTop:25}}>47 ซอย 39 รามคำแหง แขวงหัวหมาก{'\n'} เขตบางกะปิ กรุงเทพมหานคร 10240</Text>
+          </View>
 
        
           </View>
@@ -143,19 +146,13 @@ const Info = ({navigation}) => {
 
             * Application นี้สามารถนำไปใช้ในการศึกษาได้ โดยไม่จำเป็นต้องขออนุญาต
             </Text>
-            <Text style={{fontSize:18}}>
-
-            * Application นี้สามารถนำไปใช้ในเชิงการศึกษาได้ โดยไม่จำเป็นต้องขออนุญาต
-            </Text>
  
             <View style={styles.liner}></View>
             <Text style={{marginTop:10}}> จัดทำโดย </Text>
-            <Text> นายอภินันท์ ติงหงะ</Text>
-            <Text> นายอธิป หยงสตาร์ </Text>
             <Text> นายพงศ์พิสุทธิ์ มีมุข </Text>
             <Text> นายมาวิน หาญสกุลวัฒน์ </Text>
-
-
+            <Text> นายอธิป หยงสตาร์ </Text>
+            <Text> นายอภินันท์ ติงหงะ</Text>
             </View>
  
           </TouchableOpacity>  
@@ -271,7 +268,8 @@ const styles = StyleSheet.create({
     fontSize:20,
     textAlign:'center',
     opacity:0.6,
-    fontWeight:'bold'
+    fontWeight:'bold',
+    marginTop:35
   },
   centeredView: {
     flex: 1,

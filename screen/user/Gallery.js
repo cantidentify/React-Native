@@ -19,8 +19,8 @@ import axios from 'axios';
 
 
 
-export default function App(){
-
+export default function App( {navigation} ){
+ 
     let [gallery,setgallery] = useState([])
     let [album,setalbum] = useState({})
     let [loading,setloading] = useState(true)
@@ -101,9 +101,7 @@ const image3 = [
                     <Text style={styles.topic}>{key}</Text>
                     <SliderBox
                       images={value}
-                      onCurrentImagePressed={index =>
-                        pressLink({index})
-                      }
+                      onCurrentImagePressed={() => navigation.navigate('SubGallery')}
                       autoplay
                       circleLoop
                       sliderBoxHeight={200}
