@@ -116,7 +116,6 @@ const styles = StyleSheet.create({
   box2: {
     padding: 15,
     justifyContent: 'space-around',
-    backgroundColor: 'white',
     marginTop: 20,
     flexDirection: 'row',
   },
