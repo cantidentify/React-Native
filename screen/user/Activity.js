@@ -8,7 +8,8 @@ import {
   SafeAreaView,
   Alert,
   Image,
-  ScrollView
+  ScrollView,
+  TouchableOpacity
 } from 'react-native';
 
 import { Avatar, Button, Card, Title, Paragraph , ActivityIndicator } from 'react-native-paper';
@@ -58,12 +59,16 @@ return(
     <ScrollView>
     {loading?<ActivityIndicator size="large" color="#da723c" style={{flex:1 , marginTop:'65%' }}/>:event.map((e,index)=>{
        return (
+        
        <Card style={styles.cardBox} key={index+"Card"}>
        <Card.Content style={styles.cardContent}>
          <Title style={styles.header}>{e.Text}</Title>
        </Card.Content>
+       <TouchableOpacity onPress={()=>Alert.alert("รายละเอียด",e.Detail)}>
        <Card.Cover source={{ uri: e.Img_uri }} />
-     </Card>)
+       </TouchableOpacity>
+     </Card>
+    )
      })}
 
     

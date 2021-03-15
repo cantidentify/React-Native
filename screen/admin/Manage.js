@@ -9,6 +9,7 @@ import {
   Image,
   ActivityIndicator,
   Alert,
+  ScrollView
 } from "react-native";
 import axios from "axios";
 import { RadioButton } from "react-native-paper";
@@ -70,7 +71,7 @@ export default function Manage({ route, navigation }) {
         type: [DocumentPicker.types.images],
       });
 
-      ImageResizer.createResizedImage(res.uri, 400, 400, "JPEG", 50, 0)
+      ImageResizer.createResizedImage(res.uri, 600, 300, "JPEG", 50, 0)
         .then((resizedImageUri) => {
           RNFS.readFile(resizedImageUri.uri, "base64").then((res) => {
             setsingleImg(`data:image/jpg;base64,${res}`);
@@ -92,7 +93,7 @@ export default function Manage({ route, navigation }) {
       });
 
       for (let res of results) {
-        ImageResizer.createResizedImage(res.uri, 400, 400, "JPEG", 50, 0)
+        ImageResizer.createResizedImage(res.uri, 600, 300, "JPEG", 50, 0)
           .then((resizedImageUri) => {
             RNFS.readFile(resizedImageUri.uri, "base64").then((res) => {
               setgallery((gallery) => [
@@ -864,6 +865,7 @@ export default function Manage({ route, navigation }) {
 
   return (
     <View style={styles.containner}>
+      <ScrollView>
       <Modal animationType="slide" transparent={true} visible={showModal}>
         <CameraScreen toAdmin={Imageres} showModal={setModal} />
       </Modal>
@@ -912,6 +914,7 @@ export default function Manage({ route, navigation }) {
       </View>
 
       {randerchoice()}
+      </ScrollView>
     </View>
   );
 }

@@ -81,7 +81,7 @@ export default function Login({navigation}) {
       <Button
         labelStyle={{ padding:5 , fontWeight:'bold' ,color:'white'}}
         style={{ marginTop: 50, width: "80%", height: 50}}
-        color='#64b5f6'
+        color='#28527a'
         mode="contained"
         onPress={() => checkuser()}
       >
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   headerText: {
-    color: "#1e88e5",
+    color: "#28527a",
     fontSize: 35,
     fontWeight: "bold",
     paddingVertical: 12,

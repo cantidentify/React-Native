@@ -5,7 +5,7 @@ import { faPhone,facboo } from '@fortawesome/free-solid-svg-icons'
 import {faFacebook} from '@fortawesome/free-brands-svg-icons'
 
 import { useFonts, Kanit_100Thin,Kanit_500Medium } from '@expo-google-fonts/kanit';
-import { Sarabun_100Thin,Sarabun_500Medium ,Sarabun_400Regular} from '@expo-google-fonts/sarabun';
+import { Sarabun_100Thin,Sarabun_500Medium ,Sarabun_400Regular,Sarabun_700Bold} from '@expo-google-fonts/sarabun';
 
 const Seperator = () => <View style={styles.seperator} />;
  
@@ -15,7 +15,7 @@ const Info = ({navigation}) => {
   const [showcontact ,setshowcontact] = useState(false)
 
   let [fontsLoaded] = useFonts({
-    Kanit_100Thin,Kanit_500Medium,Sarabun_100Thin,Sarabun_500Medium,Sarabun_400Regular
+    Kanit_100Thin,Kanit_500Medium,Sarabun_100Thin,Sarabun_500Medium,Sarabun_400Regular,Sarabun_700Bold
   });
 
   function openadmin(){
@@ -76,7 +76,7 @@ const Info = ({navigation}) => {
         </View>
         <TouchableOpacity
             onPress={() => openadmin()}>
-            <View style={{width:'100%' , height:20}}>
+            <View style={{width:'100%' , height:30}}>
             </View>
           </TouchableOpacity>
 
@@ -84,7 +84,7 @@ const Info = ({navigation}) => {
           <Text style={styles.contactHeader}>ข้อมูลเพิ่มเติม</Text>
 
          
-          <View style={{justifyContent:'center',alignItems:'center',marginVertical:20}}> 
+          <View style={{justifyContent:'center',alignItems:'center',marginVertical:10}}> 
 
          
 
@@ -112,7 +112,7 @@ const Info = ({navigation}) => {
 
           <Seperator/>
           <View style={{alignItems:'center',marginTop:20}}>
-          <TouchableOpacity onPress={()=>{setshowcontact(true)}} style={{backgroundColor:'#fed049',padding:10,borderRadius:10}}>
+          <TouchableOpacity onPress={()=>{setshowcontact(true)}} style={{backgroundColor:'#f4d160',padding:10,borderRadius:10}}>
             <Text style={{fontSize:18 , color:'#282846',fontFamily:'Sarabun_500Medium'}}>ข้อตกลงการใช้งาน</Text>
           </TouchableOpacity>
       
@@ -270,9 +270,7 @@ const styles = StyleSheet.create({
   contactHeader:{
     fontSize:20,
     textAlign:'center',
-    fontFamily:'Sarabun_500Medium',
-    opacity:0.6,
-    fontWeight:'bold',
+    fontFamily:'Sarabun_700Bold',
     marginTop:35
 
   },

@@ -97,7 +97,7 @@ const HomeStackScreen = ({navigation}) => (
         headerTitle: "วัดเทพลีลาพระอารามหลวง",
         headerTitleStyle: { alignSelf: "center" },
         headerStyle: {
-          backgroundColor: '#2a9bff',
+          backgroundColor: '#28527a',
         },
         headerTintColor: '#fff',
       }}
@@ -111,7 +111,7 @@ const HomeStackScreen = ({navigation}) => (
         headerShown:false,
         headerTitleStyle: { alignSelf: "center" },
         headerStyle: {
-          backgroundColor: '#2a9bff',
+          backgroundColor: '#28527a',
         },
         headerTintColor: '#fff',
       }}
@@ -124,7 +124,7 @@ const HomeStackScreen = ({navigation}) => (
         headerTitle: "ประวัติ",
         headerTitleStyle: { alignSelf: "center" },
         headerStyle: {
-          backgroundColor: '#2a9bff',
+          backgroundColor: '#28527a',
         },
         headerTintColor: '#fff',
         headerTitleContainerStyle: {
@@ -152,7 +152,7 @@ const LocationStackScreen = ({ navigation }) => (
         title: "แผนที่ภายในวัด",
         headerTitleStyle: { alignSelf: "center" },
         headerStyle: {
-          backgroundColor: '#2a9bff',
+          backgroundColor: '#28527a',
         },
         headerTintColor: '#fff',
         headerLeft: () => (
@@ -182,7 +182,7 @@ const ActivityStackScreen = ({ navigation }) => (
         title: "ข่าวสารและกิจกรรมของวัด",
         headerTitleStyle: { alignSelf: "center" },
         headerStyle: {
-          backgroundColor: '#2a9bff',
+          backgroundColor: '#28527a',
         },
         headerTintColor: '#fff',
         headerLeft: () => (
@@ -212,7 +212,7 @@ const GalleryScreen = ({ navigation }) => (
         title: "คลังภาพ",
         headerTitleStyle: { alignSelf: "center" },
         headerStyle: {
-          backgroundColor: '#2a9bff',
+          backgroundColor: '#28527a',
         },
         headerTintColor: '#fff',
         headerTitleContainerStyle: {
@@ -240,7 +240,7 @@ function OtherMenuScreen({navigation}) {
         title: "เมนูอื่นๆ",
         headerTitleStyle: { alignSelf: "center" },
         headerStyle: {
-          backgroundColor: '#2a9bff',
+          backgroundColor: '#28527a',
         },
         headerTintColor: '#fff',
         headerLeft: () => (
