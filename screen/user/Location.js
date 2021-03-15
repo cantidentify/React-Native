@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { useFonts, Kanit_100Thin,Kanit_500Medium } from '@expo-google-fonts/kanit';
 import { Sarabun_100Thin,Sarabun_500Medium,Sarabun_400Regular } from '@expo-google-fonts/sarabun';
+import { Button } from 'react-native-paper';
 
 
 
@@ -19,14 +20,18 @@ export default function App() {
     Sarabun_100Thin,Kanit_100Thin,Sarabun_400Regular,Sarabun_500Medium
   });
 
+
+
+
+ 
   return(
   <SafeAreaView style={styles.container}>
     <ScrollView>
       <View>
-        <Image
+  <Image
           style={styles.MainImage}
           source={require('../../asset/map/location1.jpeg')}
-        />
+        /> 
       </View>
       <View style={styles.cardBox}>
         <Text style={styles.header}>การเดินทาง</Text>
@@ -61,6 +66,7 @@ export default function App() {
           style={styles.insideImage}
           source={require('../../asset/map/location5.jpg')}
         />
+
         <Text style={styles.header2}>3. ศาลา 1</Text>
         <Image
           style={styles.insideImage}
@@ -97,6 +103,10 @@ export default function App() {
           source={require('../../asset/map/location11.jpg')}
         />
         <Text style={styles.header2}>10. ห้องน้ำ</Text>
+        <Image
+          style={styles.insideImage}
+          source={require('../../asset/map/location12.jpg')}
+        />
         <Text style={styles.header2}>11. ลานจอดรถ</Text>
         <Text style={styles.header2}>12. ท่าเรือวัดเทพลีลา</Text>
       </View>
@@ -127,6 +137,7 @@ const styles = StyleSheet.create({
   },
   insideImage:{
     justifyContent: 'center',
+    resizeMode:'contain',
     width: '100%',
     height: 230,
     marginBottom: 10

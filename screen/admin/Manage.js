@@ -43,6 +43,8 @@ export default function Manage({ route, navigation }) {
   const [removepic,setremovepic] = useState();
   const [albumname,setalbumname] = useState();
 
+  const [removeevent,setremoveevent] = useState();
+
 
 
 
@@ -537,6 +539,82 @@ export default function Manage({ route, navigation }) {
 
   }
 
+
+  async function DeleteEvent(){
+
+    
+
+    Alert.alert(
+      "คำเตือน",
+      `ต้องการจะลบกิจกรรม ${removeevent} หรือไม่`,
+      [
+         {
+        text:"Accept",
+        onPress:async ()=>{
+          setloading(true);
+
+          try {
+            let body = {
+              Text:removeevent
+            };
+      
+            let res = await axios({
+              url:"https://watthepleela.herokuapp.com/event",
+              method:'DELETE',
+              data:body,
+              headers:  { Authorization: `Bearer ${token}`}
+            }
+           
+            )
+      
+              setloading(false);
+              alert("ลบข้อมูลเรียบร้อยแล้ว");
+              setremoveevent("");
+      
+      
+            
+      
+          } catch (e) {
+            
+            let status = e.message.split(" ")
+            if(status[5]==401){
+              alert("Token หมดอายุ")
+              navigation.goBack()
+              
+      
+            }
+            else{
+              alert("กรุณาตรวจสอบข้อมูล");
+              console.log(e)
+              
+            }
+            setloading(false);
+          }
+      
+        }
+          
+          
+
+        
+
+        },
+        {
+          text: "Cancel",
+          style: "cancel",
+        },
+     
+      ],
+      {
+        cancelable: true,
+      }
+    );
+
+
+
+  
+
+  }
+
   function randerchoice() {
     if (Check == 1) {
       return (
@@ -615,6 +693,23 @@ export default function Manage({ route, navigation }) {
               color="#f0a500"
               title={"อัปโหลด"}
               onPress={() => uploadActivity()}
+            />
+          </View>
+
+          <PaperInput
+            label="ชื่อกิจกรรม"
+            editable
+            multiline
+            style={{ marginTop: 10 }}
+            value={removeevent}
+            onChangeText={(text) => setremoveevent(text)}
+          />
+
+          <View style={{ marginTop: 10 }}>
+            <Button
+              color="#aa2b1d"
+              title={"ลบกิจกรรม"}
+              onPress={() => DeleteEvent()}
             />
           </View>
         </>

@@ -40,6 +40,7 @@ const Info = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <ScrollView>
       <View style={styles.detail}>
         <View style={styles.otherMenu}>
 
@@ -171,6 +172,7 @@ const Info = ({navigation}) => {
           onPress={() => navigation.navigate('SlideShow')}
         /> */}
       </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
