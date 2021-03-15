@@ -195,7 +195,7 @@ const styles = StyleSheet.create({
     marginTop: 15,
     opacity:0.6,
     fontFamily:'Sarabun_400Regular',
-    fontSize:15
+    fontSize:13
     ,color:'#e6d5b8'
   },
   buttom_navigator: {
